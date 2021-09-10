@@ -1,0 +1,68 @@
+<div class="example-container">
+  <mat-toolbar color="primary" class="example-toolbar" > 
+      
+    <button mat-icon-button (click)="drawer.toggle()">
+      <mat-icon *ngIf="!drawer.opened">menu</mat-icon>
+      <mat-icon *ngIf="drawer.opened">close</mat-icon>
+    </button>   
+      <h1 class="example-app-name">ENVIOS UDEC</h1>
+
+
+      <span class="example-spacer"></span>
+
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+            <mat-icon>more_vert</mat-icon>
+        </button>
+
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item routerLink="/perfil">
+                <mat-icon>account_box</mat-icon>
+                <span>Mi Perfil</span>
+            </button>
+            <button mat-menu-item >
+                <mat-icon>exit_to_app</mat-icon>
+                <span>Cerrar Sesión</span>
+            </button>
+        </mat-menu>
+  
+      
+  </mat-toolbar>
+  
+  <mat-drawer-container class="example-sidenav-content" autosize>
+    <mat-drawer #drawer style="width: 200px" mode="side">
+
+  
+        <button mat-menu-item style="cursor: pointer">
+            <mat-icon>search</mat-icon>
+            <span>Buscar</span>
+        </button>
+        <mat-divider></mat-divider>  
+        
+        <button mat-menu-item style="cursor: pointer">
+          <mat-icon>search</mat-icon>
+          <span>Buscar</span>
+      </button>
+      <mat-divider></mat-divider>  
+
+      
+      <button mat-menu-item style="cursor: pointer">
+        <mat-icon>search</mat-icon>
+        <span>Buscar</span>
+    </button>
+    <mat-divider></mat-divider>  
+      
+    </mat-drawer>
+
+      <div class="example-sidenav-content">
+        <button type="button" mat-button (click)="drawer.toggle()">
+          Toggle sidenav
+        </button>
+      </div>
+
+
+    </mat-drawer-container>
+
+
+
+
+</div>
