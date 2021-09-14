@@ -31,3 +31,7 @@ export class AppComponent {
   columnsToDisplay: string[] = this.displayedColumns.slice();
   data: PeriodicElement[] = ELEMENT_DATA;
 }
+
+function navigateMenu(tag: any) {
+  throw new Error('Function not implemented.');
+}
