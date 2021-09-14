@@ -34,7 +34,13 @@
 
       <img src="">
   
-        <button mat-menu-item  style="cursor: pointer" (click)="drawer.toggle()" routerLink="/login">
+      <button mat-menu-item style="cursor: pointer" (click)="drawer.toggle()" routerLink="/">
+      
+        <mat-icon>first_page</mat-icon>
+        <span>Inicio</span>
+      </button>
+      <mat-divider></mat-divider>
+      <button mat-menu-item  style="cursor: pointer" (click)="drawer.toggle()" routerLink="/login">
           
           <mat-icon>search</mat-icon>
           <span>Buscar</span>
@@ -42,7 +48,7 @@
         <mat-divider></mat-divider>  
         
         <button mat-menu-item style="cursor: pointer"(click)="drawer.toggle()"routerLink="/registro">
-          <mat-icon>manage_accounts</mat-icon>
+          <mat-icon>login</mat-icon>
           <span>Ingresar</span>
         </button>
       <mat-divider></mat-divider>  
@@ -56,20 +62,19 @@
     
     </mat-drawer>
     <router-outlet></router-outlet>
-<div>
-  <table mat-table [dataSource]="data" class="mat-elevation-z8">
-    <ng-container [matColumnDef]="column" *ngFor="let column of displayedColumns">
-      <th mat-header-cell *matHeaderCellDef> {{column}} </th>
-      <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
-    <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
-  </table>
-
-</div>
+    
+    
+      <table mat-table [dataSource]="data" class="mat-elevation-z8">
+        <ng-container [matColumnDef]="column" *ngFor="let column of displayedColumns">
+          <th mat-header-cell *matHeaderCellDef> {{column}} </th>
+          <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
+        </ng-container>
+    
+        <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+        <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
+      </table>
+    
 
   </mat-drawer-container>
 
- 
 </div>
