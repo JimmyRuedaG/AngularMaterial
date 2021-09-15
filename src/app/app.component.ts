@@ -1,5 +1,4 @@
-import { Component, Input } from '@angular/core';
-import { NgModel } from '@angular/forms';
+import { Component } from '@angular/core';
 
 export interface PeriodicElement {
   name: string;
@@ -7,7 +6,6 @@ export interface PeriodicElement {
   weight: number;
   symbol: string;
 }
-
 const ELEMENT_DATA: PeriodicElement[] = [
   { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
   { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' },
