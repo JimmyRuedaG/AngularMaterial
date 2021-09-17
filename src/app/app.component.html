@@ -18,7 +18,7 @@
         </button>
 
         <mat-menu #menu="matMenu">
-            <button mat-menu-item routerLink="/perfil">
+            <button mat-menu-item [routerLink]="['/perfil']">
                 <mat-icon>account_box</mat-icon>
                 <span>Mi Perfil</span>
             </button>
@@ -37,7 +37,7 @@
 
       <img src="">
   
-      <button mat-menu-item style="cursor: pointer" (click)="drawer.toggle()" routerLink="/">
+      <button mat-menu-item style="cursor: pointer" (click)="drawer.toggle()"[routerLink]="['/']">
       
         <mat-icon>first_page</mat-icon>
         <span>Inicio</span>
@@ -45,22 +45,23 @@
       <mat-divider></mat-divider>
       
         
-        <button mat-menu-item style="cursor: pointer"(click)="drawer.toggle()"routerLink="/login">
+        <button mat-menu-item style="cursor: pointer"(click)="drawer.toggle()" [routerLink]="['/login']">
           <mat-icon>login</mat-icon>
           <span>Ingresar</span>
         </button>
       <mat-divider></mat-divider>  
 
       
-      <button mat-menu-item style="cursor: pointer"(click)="drawer.toggle()">
+      <button mat-menu-item style="cursor: pointer"(click)="drawer.toggle()" [routerLink]= "['/registro']">
         <mat-icon>edit</mat-icon>
         <span>Editar</span>
       </button>
       <mat-divider></mat-divider> 
     
     </mat-drawer>
+    <div>
     <router-outlet></router-outlet>
-    
+    </div>
     
       <table mat-table [dataSource]="data" class="mat-elevation-z8">
         <ng-container [matColumnDef]="column" *ngFor="let column of displayedColumns">
