@@ -1,8 +1,8 @@
-<mat-toolbar color="primary" class="example-toolbar">
+<div *ngIf="loaderService.isLoading | async" class="loader-container">
+  <mat-progress-bar color="primary" mode="indeterminate"></mat-progress-bar>
+</div>
 
-  <div>
-    <mat-progress-bar color="primary" mode="indeterminate"></mat-progress-bar>
-  </div>
+<mat-toolbar color="primary" class="example-toolbar">
 
   <button mat-icon-button (click)="drawer.toggle()">
     <mat-icon *ngIf="!drawer.opened">menu</mat-icon>
