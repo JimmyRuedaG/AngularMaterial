@@ -6,6 +6,9 @@ import { DepartamentoService } from '../../_service/departamento.service'
   templateUrl: './buscar.component.html',
   styleUrls: ['./buscar.component.css']
 })
+
+
+
 export class BuscarComponent implements OnInit {
 
   //inyecciones de dependencias o librerias

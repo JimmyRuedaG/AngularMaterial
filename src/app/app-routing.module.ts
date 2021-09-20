@@ -11,9 +11,7 @@ const routes: Routes = [
   { path: 'registro', component: RegistroComponent},
   { path: 'inicio', component: AppComponent},
   { path: 'buscar', component: BuscarComponent},
-  { path: '**', component: BuscarComponent}
-  
-
+  { path: '**', component: LoginComponent }
 ];
 
 @NgModule({

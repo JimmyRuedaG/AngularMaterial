@@ -18,14 +18,40 @@
   right: 0;
 }
 
-.example-sidenav-content {
-  width: 100%;
-  height: 100%;
-  align-items: initial;
-  justify-content: initial;
+table {
+    width: 50%;
+    height: 100%;
 }
 
-table{
-  height: 100%;
-  width: 100%;
+.table-left{
+    float: left;
+}
+
+.table-right{
+    float: right;
+}
+
+button {
+    margin: 16px 8px;
+}
+
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+}
+
+.mat-progress-bar{
+    position:fixed;
+    top:0px;
+}
+
+.example-sidenav-content {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.loader-container{
+    position: fixed;
 }
