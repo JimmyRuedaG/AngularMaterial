@@ -1,5 +1,9 @@
 <mat-toolbar color="primary" class="example-toolbar">
 
+  <div>
+    <mat-progress-bar color="primary" mode="indeterminate"></mat-progress-bar>
+  </div>
+
   <button mat-icon-button (click)="drawer.toggle()">
     <mat-icon *ngIf="!drawer.opened">menu</mat-icon>
     <mat-icon *ngIf="drawer.opened">close</mat-icon>
@@ -29,12 +33,14 @@
 </mat-toolbar>
 
 <div>
-  <div>
-    <mat-progress-bar color="primary" mode="indeterminate"></mat-progress-bar>
-  </div>
+  
+  
+  
   <mat-drawer-container autosize>
+    
     <mat-drawer #drawer style="width: 200px" mode="side">
     
+      
       <button mat-menu-item style="cursor: pointer" (click)="drawer.toggle()" [routerLink]="['/Inicio']">
         <mat-icon>first_page</mat-icon>
         <span>Inicio</span>

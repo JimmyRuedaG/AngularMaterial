@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DepartamentoService } from '../app/_service/departamento.service'
 import { Ciudad } from './_model/Ciudad';
 import { Departamento } from './_model/Departamento';
+import { LoaderService } from '../app/loader/loader.service';
 
 
 @Component({
@@ -22,7 +23,8 @@ export class AppComponent implements OnInit{
   ciudadList: Ciudad[] = [];
   dataSourceCiudad: any[] = [];
 
-  constructor(private departamentoService: DepartamentoService) { }
+  constructor(private departamentoService: DepartamentoService,
+    public loaderService:LoaderService) { }
 
   ngOnInit(): void{
     this.depList = [];

@@ -8,8 +8,8 @@ import { FormsModule } from '@angular/forms';
 import { MaterialModule} from './material/material.module'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BuscarComponent } from './pages/buscar/buscar.component';
-import { HttpClientModule } from '@angular/common/http';
-
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { InterceptorService} from '../app/loader/interceptor.service';
 @NgModule({
   declarations: [
     AppComponent,
