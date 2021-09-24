@@ -4,9 +4,9 @@ import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
 
-  let component:AppComponent;
+  let component: AppComponent;
   let fixture: ComponentFixture<AppComponent>;
-  
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
@@ -22,11 +22,11 @@ describe('AppComponent', () => {
   });
 
   it('should create the app', () => {
-    
+
     expect(component).toBeTruthy();
   });
 
- 
+
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);

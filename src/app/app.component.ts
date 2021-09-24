@@ -12,7 +12,7 @@ import { LoaderService } from '../app/loader/loader.service';
 })
 
 
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
   displayedColumns: string[] = ['idDepartamento', 'nombre', 'ciudades'];
   columnsToDisplay: string[] = this.displayedColumns.slice();
   depList: Departamento[] = [];
@@ -24,9 +24,9 @@ export class AppComponent implements OnInit{
   dataSourceCiudad: any[] = [];
 
   constructor(private departamentoService: DepartamentoService,
-    public loaderService:LoaderService) { }
+    public loaderService: LoaderService) { }
 
-  ngOnInit(): void{
+  ngOnInit(): void {
     this.depList = [];
     this.departamentoService.listar().subscribe(data => {
       data.forEach(element => {
@@ -37,7 +37,7 @@ export class AppComponent implements OnInit{
     });
 
   }
-  
+
   cargarCiudad(idDepartamento): void {
     this.departamentoService.listarCiudades(idDepartamento).subscribe(data => {
       data.forEach(element => {

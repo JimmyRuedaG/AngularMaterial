@@ -5,11 +5,11 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegistroComponent } from './pages/registro/registro.component';
 import { FormsModule } from '@angular/forms';
-import { MaterialModule} from './material/material.module'
+import { MaterialModule } from './material/material.module'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BuscarComponent } from './pages/buscar/buscar.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { InterceptorService} from '../app/loader/interceptor.service';
+import { InterceptorService } from '../app/loader/interceptor.service';
 import { DepartamentoComponent } from './pages/departamento/departamento.component';
 @NgModule({
   declarations: [
@@ -21,14 +21,14 @@ import { DepartamentoComponent } from './pages/departamento/departamento.compone
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule, 
-    FormsModule, 
+    AppRoutingModule,
+    FormsModule,
     MaterialModule,
     BrowserAnimationsModule,
     HttpClientModule
   ],
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass:InterceptorService,multi:true}
+    { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true }
   ],
   bootstrap: [AppComponent]
 })

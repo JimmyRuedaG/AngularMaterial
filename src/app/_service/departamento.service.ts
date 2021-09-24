@@ -8,17 +8,17 @@ import { Ciudad } from '../_model/Ciudad';
   providedIn: 'root'
 })
 
-export class DepartamentoService{
+export class DepartamentoService {
 
   url = `${environment.HOST}/departamentos`;
   url2 = `${environment.HOST}/departamentos/ciudad/listarPorDepartamnto`;
 
   constructor(private http: HttpClient) { }
- 
-  public listar(){
+
+  public listar() {
     return this.http.get<Departamento[]>(`${this.url}/listar`);
   }
-  public listarCiudades(id: number){
+  public listarCiudades(id: number) {
     return this.http.get<Ciudad[]>(`${this.url}/ciudad/listarPorDepartamnto/` + id);
   }
 }
