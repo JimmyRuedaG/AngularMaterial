@@ -10,12 +10,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BuscarComponent } from './pages/buscar/buscar.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { InterceptorService} from '../app/loader/interceptor.service';
+import { DepartamentoComponent } from './pages/departamento/departamento.component';
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegistroComponent,
-    BuscarComponent
+    BuscarComponent,
+    DepartamentoComponent
   ],
   imports: [
     BrowserModule,

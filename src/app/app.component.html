@@ -58,6 +58,12 @@
         <span>Editar</span>
       </button>
       <mat-divider></mat-divider>
+
+      <button mat-menu-item style="cursor: pointer" (click)="drawer.toggle()" [routerLink]="['/Departamento']">
+        <mat-icon>share_location</mat-icon>
+        <span>Departamento</span>
+      </button>
+      <mat-divider></mat-divider>
     
       <button mat-menu-item style="cursor: pointer" (click)="drawer.toggle()" [routerLink]="['/login']">
         <mat-icon>login</mat-icon>
@@ -75,6 +81,7 @@
     
     <br>
     <div>
+      
       <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 table-left">
     
         <ng-container [matColumnDef]="column" *ngFor="let column of displayedColumns">
