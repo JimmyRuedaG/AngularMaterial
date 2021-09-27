@@ -5,3 +5,11 @@ table{
     color: #1fa276;
     
 }
+
+.mat-form-field {
+  font-size: 14px;
+}
+
+td, th {
+  width: 50%;
+}

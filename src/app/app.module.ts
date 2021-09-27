@@ -11,6 +11,7 @@ import { BuscarComponent } from './pages/buscar/buscar.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { InterceptorService } from '../app/loader/interceptor.service';
 import { DepartamentoComponent } from './pages/departamento/departamento.component';
+
 @NgModule({
   declarations: [
     AppComponent,
