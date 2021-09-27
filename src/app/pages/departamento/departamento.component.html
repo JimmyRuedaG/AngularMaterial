@@ -4,7 +4,7 @@
 
 <mat-form-field>
     <mat-label>Filtro</mat-label>
-    <input matInput (keyup)="applyFilter($event)" placeholder="Filtro" #input>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Filtro" #input >
 </mat-form-field>
 
 <div [hidden]="flagCiudad">
@@ -31,8 +31,9 @@
         </ng-container>
 
 
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky:true"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        
 
         <tr class="mat-row" *matNoDataRow>
             <td class="mat-cell" colspan="4">No existen datos "{{input.value}}"</td>
@@ -60,7 +61,7 @@
         </ng-container>
 
 
-        <tr mat-header-row *matHeaderRowDef="displayedCityColumns"></tr>
+        <tr mat-header-row *matHeaderRowDef="displayedCityColumns sticky:true"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedCityColumns;"></tr>
 
         <tr class="mat-row" *matNoDataRow>
