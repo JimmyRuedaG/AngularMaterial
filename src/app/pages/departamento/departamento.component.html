@@ -1,80 +1,52 @@
 <div *ngIf="loadService.isLoading | async" class="loader-container">
-    <mat-progress-bar color="primary" mode="indeterminate"></mat-progress-bar>
+  <mat-progress-bar color="primary" mode="indeterminate"></mat-progress-bar>
 </div>
 
 <mat-form-field>
-    <mat-label>Filtro</mat-label>
-    <input matInput (keyup)="applyFilter($event)" placeholder="Filtro" #input >
+  <mat-label>Filtro</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Filtro" #input />
 </mat-form-field>
 
 <div [hidden]="flagCiudad">
+  <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+    <ng-container matColumnDef="codigo">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>N° Departamento</th>
+      <td mat-cell *matCellDef="let element">{{ element.idDepartamento }}</td>
+    </ng-container>
 
-    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+    <ng-container matColumnDef="nombre">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        Nombre del Departamento
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.nombre }}</td>
+    </ng-container>
 
-        <ng-container matColumnDef="codigo">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> N° Departamento </th>
-            <td mat-cell *matCellDef="let element"> {{element.idDepartamento}} </td>
-        </ng-container>
+    <ng-container matColumnDef="ver">
+      <th mat-header-cell *matHeaderCellDef>Ver</th>
+      <td mat-cell *matCellDef="let element">
+        <button
+          mat-button
+          color="primary"
+          [routerlink]="['ciudad/', element.idDepartamento]"
+        >
+          <mat-icon>visibility</mat-icon>
+        </button>
+      </td>
+    </ng-container>
 
-        <ng-container matColumnDef="nombre">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre del Departamento </th>
-            <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
-        </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
 
-        <ng-container matColumnDef="ver">
-            <th mat-header-cell *matHeaderCellDef> Ver </th>
-            <td mat-cell *matCellDef="let element">
-                <button mat-button color="primary" (click)="cargarCiudadPorDepartamento(element.idDepartamento)">
-                    <mat-icon>visibility</mat-icon>
-                </button>
-            </td>
-        </ng-container>
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">No existen datos "{{ input.value }}"</td>
+    </tr>
+  </table>
 
-
-        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky:true"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-        
-
-        <tr class="mat-row" *matNoDataRow>
-            <td class="mat-cell" colspan="4">No existen datos "{{input.value}}"</td>
-        </tr>
-
-    </table>
-
-    <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 25]" #DepartmentPaginator></mat-paginator>
-</div>
-
-
-<div [hidden]="!flagCiudad">
-
-    <table mat-table [dataSource]="dataSourceCiudad" matSort class="mat-elevation-z8">
-
-
-        <ng-container matColumnDef="codigo">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> N° Ciudad </th>
-            <td mat-cell *matCellDef="let element"> {{element.idCiudad}} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="nombre">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre de ciudad </th>
-            <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
-        </ng-container>
-
-
-        <tr mat-header-row *matHeaderRowDef="displayedCityColumns sticky:true"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedCityColumns;"></tr>
-
-        <tr class="mat-row" *matNoDataRow>
-            <td class="mat-cell" colspan="4">No existen datos "{{input.value}}"</td>
-        </tr>
-
-    </table>
-    <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 25]" #cityPaginator></mat-paginator>
-
-    <button mat-stroked-button color="accent" style="float: right;" (click)="cambiarEstadoFlag()">
-        <mat-icon>arrow_back</mat-icon>
-    </button>
-
+  <mat-paginator
+    [pageSize]="5"
+    [pageSizeOptions]="[5, 10, 25]"
+    #DepartmentPaginator
+  ></mat-paginator>
 </div>
 
 <router-outlet></router-outlet>

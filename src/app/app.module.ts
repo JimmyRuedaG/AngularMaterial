@@ -11,6 +11,8 @@ import { BuscarComponent } from './pages/buscar/buscar.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { InterceptorService } from '../app/loader/interceptor.service';
 import { DepartamentoComponent } from './pages/departamento/departamento.component';
+import { Pages7vehiculoComponent } from './pages7vehiculo/pages7vehiculo.component';
+import { VehiculoComponent } from './pages/vehiculo/vehiculo.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { DepartamentoComponent } from './pages/departamento/departamento.compone
     LoginComponent,
     RegistroComponent,
     BuscarComponent,
-    DepartamentoComponent
+    DepartamentoComponent,
+    Pages7vehiculoComponent,
+    VehiculoComponent,
   ],
   imports: [
     BrowserModule,

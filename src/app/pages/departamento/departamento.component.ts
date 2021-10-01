@@ -6,53 +6,50 @@ import { Departamento } from 'src/app/_model/Departamento';
 import { DepartamentoService } from 'src/app/_service/departamento.service';
 import { MatSort } from '@angular/material/sort';
 import { LoaderService } from 'src/app/loader/loader.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-departamento',
   templateUrl: './departamento.component.html',
-  styleUrls: ['./departamento.component.css']
+  styleUrls: ['./departamento.component.css'],
 })
-
 export class DepartamentoComponent implements OnInit {
-  
   //departamentos
   displayedColumns: string[] = ['codigo', 'nombre', 'ver'];
   dataSource = new MatTableDataSource<Departamento>();
-  @ViewChild("DepartmentPaginator") paginator: MatPaginator;
+  @ViewChild('DepartmentPaginator') paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  
+
   //ciudades
   displayedCityColumns: string[] = ['codigo', 'nombre'];
   dataSourceCiudad = new MatTableDataSource<Ciudad>();
-  @ViewChild("cityPaginator") citiyPaginator: MatPaginator;
-  @ViewChild(MatSort) citysort: MatSort;     
+  @ViewChild('cityPaginator') citiyPaginator: MatPaginator;
+  @ViewChild(MatSort) citysort: MatSort;
 
   flagCiudad = this.dataSourceCiudad.data.length > 0 ? true : false;
 
-  constructor(private departamentoService: DepartamentoService, public loadService: LoaderService) { }
+  constructor(
+    private departamentoService: DepartamentoService,
+    public loadService: LoaderService,
+    public route: ActivatedRoute
+  ) {}
 
-  ngOnInit():void {
-
-    this.departamentoService.listar().subscribe(data => {
-
+  ngOnInit(): void {
+    this.departamentoService.listar().subscribe((data) => {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
     });
-
   }
 
   cargarCiudadPorDepartamento(idDepartamento: number): void {
-
-    this.departamentoService.listarCiudades(idDepartamento).subscribe(data => {
-
-      this.dataSourceCiudad = new MatTableDataSource(data);
-      this.dataSourceCiudad.paginator = this.citiyPaginator;
-      this.dataSourceCiudad.sort = this.sort;
-
-      this.flagCiudad = this.dataSourceCiudad.data.length > 0 ? true : false;
-
-    });
+    this.departamentoService
+      .listarCiudades(idDepartamento)
+      .subscribe((data) => {
+        this.dataSourceCiudad = new MatTableDataSource(data);
+        this.dataSourceCiudad.paginator = this.citiyPaginator;
+        this.dataSourceCiudad.sort = this.sort;
+      });
   }
 
   applyFilter(event: Event) {
@@ -62,8 +59,7 @@ export class DepartamentoComponent implements OnInit {
 
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
-    }
-    else if (this.dataSourceCiudad.paginator) {
+    } else if (this.dataSourceCiudad.paginator) {
       this.dataSourceCiudad.paginator.firstPage();
     }
   }
@@ -71,5 +67,4 @@ export class DepartamentoComponent implements OnInit {
   cambiarEstadoFlag(): void {
     this.flagCiudad = !this.flagCiudad;
   }
-
 }
