@@ -13,8 +13,8 @@ const routes: Routes = [
   { path: 'inicio', component: AppComponent },
   { path: 'buscar', component: BuscarComponent },
   {
-    path: 'Departamento', component: DepartamentoComponent,children :[
-       {path:  'ciudad:idDep', component: CiudadComponent}
+    path: 'departamento', component: DepartamentoComponent, children: [
+      { path: 'ciudad/:idDep', component: CiudadComponent }
     ]
   },
   { path: '**', component: LoginComponent }

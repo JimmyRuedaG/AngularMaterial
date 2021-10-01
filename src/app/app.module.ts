@@ -11,8 +11,8 @@ import { BuscarComponent } from './pages/buscar/buscar.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { InterceptorService } from '../app/loader/interceptor.service';
 import { DepartamentoComponent } from './pages/departamento/departamento.component';
-import { Pages7vehiculoComponent } from './pages7vehiculo/pages7vehiculo.component';
 import { VehiculoComponent } from './pages/vehiculo/vehiculo.component';
+import { CiudadComponent } from './pages/departamento/ciudad/ciudad.component';
 
 @NgModule({
   declarations: [
@@ -21,8 +21,8 @@ import { VehiculoComponent } from './pages/vehiculo/vehiculo.component';
     RegistroComponent,
     BuscarComponent,
     DepartamentoComponent,
-    Pages7vehiculoComponent,
     VehiculoComponent,
+    CiudadComponent
   ],
   imports: [
     BrowserModule,
