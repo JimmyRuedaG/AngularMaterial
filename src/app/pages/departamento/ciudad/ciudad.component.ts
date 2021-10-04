@@ -15,7 +15,7 @@ import { DepartamentoService } from 'src/app/_service/departamento.service';
 export class CiudadComponent implements OnInit {
   
   //ciudades
-  displayedCityColumns: string[] = ['codigo', 'nombre'];
+  displayedCityColumns: string[] = ['idCiudad', 'nombre'];
   dataSourceCiudad = new MatTableDataSource<Ciudad>();
   @ViewChild('cityPaginator') cityPaginator: MatPaginator;
   @ViewChild(MatSort) citysort: MatSort;

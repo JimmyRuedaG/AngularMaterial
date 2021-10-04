@@ -40,25 +40,31 @@
         <span>Inicio</span>
       </button>
       <mat-divider></mat-divider>
-      
+
       <button mat-menu-item style="cursor: pointer" (click)="drawer.toggle()" [routerLink]="['/buscar']">
         <mat-icon>search</mat-icon>
         <span>Buscar</span>
       </button>
       <mat-divider></mat-divider>
-      
+
+      <button mat-menu-item (click)="drawer.toggle()" style="cursor: pointer" [routerLink]="['/vehiculo']">
+        <mat-icon>commute</mat-icon>
+        <span>Vehiculo</span>
+      </button>
+      <mat-divider></mat-divider>
+
       <button mat-menu-item style="cursor: pointer" (click)="drawer.toggle()" [routerLink]="['/registro']">
         <mat-icon>how_to_reg</mat-icon>
         <span>Resgistro</span>
       </button>
       <mat-divider></mat-divider>
-      
+
       <button mat-menu-item style="cursor: pointer" (click)="drawer.toggle()" [routerLink]="['/departamento']">
         <mat-icon>share_location</mat-icon>
         <span>Departamento</span>
       </button>
       <mat-divider></mat-divider>
-      
+
       <button mat-menu-item style="cursor: pointer" (click)="drawer.toggle()" [routerLink]="['/login']">
         <mat-icon>login</mat-icon>
         <span>Ingresar</span>

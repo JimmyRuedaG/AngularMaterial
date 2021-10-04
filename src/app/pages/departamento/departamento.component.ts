@@ -17,7 +17,7 @@ import { LoaderService } from 'src/app/loader/loader.service';
 
 export class DepartamentoComponent implements OnInit {
   //departamentos
-  displayedColumns: string[] = ['codigo', 'nombre', 'ver'];
+  displayedColumns: string[] = ['idDepartamento', 'nombre', 'ver'];
   dataSource = new MatTableDataSource<Departamento>();
   @ViewChild('DepartmentPaginator') paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
