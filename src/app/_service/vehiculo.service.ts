@@ -12,6 +12,10 @@ export class VehiculoService {
 
   constructor(private http: HttpClient) { }
 
+  public listar() {
+    return this.http.get<Vehiculo[]>(`${this.url}/pageable/?page=0&size=3`);
+  }
+
   public guardar(vehiculo: Vehiculo) {
     return this.http.post(`${this.url}/guardar`, vehiculo);
   }
