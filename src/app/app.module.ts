@@ -13,7 +13,7 @@ import { InterceptorService } from '../app/loader/interceptor.service';
 import { DepartamentoComponent } from './pages/departamento/departamento.component';
 import { VehiculoComponent } from './pages/vehiculo/vehiculo.component';
 import { CiudadComponent } from './pages/departamento/ciudad/ciudad.component';
-
+import { AgregarComponent } from './pages/vehiculo/agregar/agregar.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +22,8 @@ import { CiudadComponent } from './pages/departamento/ciudad/ciudad.component';
     BuscarComponent,
     DepartamentoComponent,
     VehiculoComponent,
-    CiudadComponent
+    CiudadComponent,
+    AgregarComponent
   ],
   imports: [
     BrowserModule,
