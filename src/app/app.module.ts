@@ -13,7 +13,9 @@ import { InterceptorService } from '../app/loader/interceptor.service';
 import { DepartamentoComponent } from './pages/departamento/departamento.component';
 import { VehiculoComponent } from './pages/vehiculo/vehiculo.component';
 import { CiudadComponent } from './pages/departamento/ciudad/ciudad.component';
-import { AgregarComponent } from './pages/vehiculo/agregar/agregar.component'
+import { AgregarComponent } from './pages/vehiculo/agregar/agregar.component';
+import { EditarVehiculoComponent } from './pages/vehiculo/editar-vehiculo/editar-vehiculo.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,7 +25,8 @@ import { AgregarComponent } from './pages/vehiculo/agregar/agregar.component'
     DepartamentoComponent,
     VehiculoComponent,
     CiudadComponent,
-    AgregarComponent
+    AgregarComponent,
+    EditarVehiculoComponent
   ],
   imports: [
     BrowserModule,

@@ -1,11 +1,19 @@
 <mat-card class="example-card">
     <mat-card-header>
         <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title>Agregar vehiculo</mat-card-title>
-        <mat-card-subtitle>Ingresar datos del vehiculo a ingresar</mat-card-subtitle>
+        <mat-card-title>Editar vehiculo</mat-card-title>
+        <mat-card-subtitle>Ingresar datos a editar</mat-card-subtitle>
     </mat-card-header>
 
     <mat-card-content>
+
+        <p>
+            <mat-form-field appearance="outline">
+                <mat-label>Id vehiculo</mat-label>
+                <input matInput placeholder="N° vehiculo">
+                <mat-icon matSuffix>pin </mat-icon>
+            </mat-form-field>
+        </p>
 
         <p>
             <mat-form-field appearance="outline">
@@ -27,7 +35,7 @@
             <mat-form-field appearance="outline">
                 <mat-label>Tipo de vehiculo</mat-label>
                 <mat-select>
-                    <input matInput placeholder="Tipo de vehiculo" >
+                    <input matInput placeholder="Tipo de vehiculo">
                     <mat-option value="option">turismo</mat-option>
                     <mat-option value="option">sedan</mat-option>
                     <mat-option value="option">rural</mat-option>
