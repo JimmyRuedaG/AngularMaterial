@@ -2,7 +2,6 @@ import { VehiculoService } from '../../_service/vehiculo.service';
 import { Vehiculo } from '../../_model/vehiculo';
 import { LoaderService } from '../../loader/loader.service';
 import { BehaviorSubject, Observable, of } from 'rxjs';
-import { catchError, finalize } from 'rxjs/operators';
 import { CollectionViewer, DataSource } from '@angular/cdk/collections';
 
 export class vehiculodatasource implements DataSource<Vehiculo>{
@@ -23,9 +22,4 @@ export class vehiculodatasource implements DataSource<Vehiculo>{
         this.lessonsSubject.complete();
         this.loadingSubject.complete();
     }
-
-    // loadData(page: number, size: number): void {
-    //     this.VehService.getVeh(page, size).pipe(catchError(() => of([])),
-    //         finalize(() => this.loadingSubject.next(false))).subscribe(data => { this.lessonsSubject.next(data) });
-    // }
 }

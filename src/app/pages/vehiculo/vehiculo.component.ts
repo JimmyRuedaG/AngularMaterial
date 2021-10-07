@@ -16,28 +16,29 @@ import { MatSort, Sort } from '@angular/material/sort';
 export class VehiculoComponent implements OnInit {
 
   pageEvent: PageEvent;
-  displayedColumns: string[] = ['idVehiculo', 'placa', 'modelo', 'marca', 'tipoVehiuclo', 'capacidad', 'accion'];
+  displayedColumns: string[] = ['idVehiculo', 'placa', 'modelo', 'marca', 'tipoVehiuclo', 'capacidad', 'editar'];
   columnsToDisplay: string[] = this.displayedColumns.slice();
   dataSource: VehicleInfo = null;
-  vehicleList = new MatTableDataSource<Vehiculo>([]);
+  vehiculoList = new MatTableDataSource<Vehiculo>([]);
 
-  @ViewChild('vehiclePaginator') categoryPaginator: MatPaginator;
+  @ViewChild('vehiculoPaginator') categoryPaginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private VehService: VehiculoService, public route: ActivatedRoute, public loadService: LoaderService) {
+  constructor(private VehiculoService: VehiculoService, public route: ActivatedRoute, public loadService: LoaderService) {
   }
 
   ngOnInit(): void {
-    this.loadVehicleInfo();
+    this.loadVehiculoInfo();
+    this.vehiculoList.sort = this.sort;
   }
 
-  private loadVehicleInfo() {
-    this.VehService.getVehPag(0, 3).pipe(
+  private loadVehiculoInfo() {
+    this.VehiculoService.getVehPag(0, 3).pipe(
       tap(data => console.log(data)),
       map((vehInfo: VehicleInfo) => this.dataSource = vehInfo)
     ).subscribe(data => {
-      this.vehicleList = new MatTableDataSource(data.content);
-      this.vehicleList.sort = this.sort;
+      this.vehiculoList = new MatTableDataSource(data.content);
+      this.vehiculoList.sort = this.sort;
     });
   }
 
@@ -45,15 +46,15 @@ export class VehiculoComponent implements OnInit {
     let page = event.pageIndex;
     let size = event.pageSize;
 
-    this.VehService.getVehPag(page, size).pipe(
+    this.VehiculoService.getVehPag(page, size).pipe(
       map((vehInfo: VehicleInfo) => this.dataSource = vehInfo)
     ).subscribe(data => {
-      this.vehicleList = new MatTableDataSource(data.content);
-      this.vehicleList.sort = this.sort;
+      this.vehiculoList = new MatTableDataSource(data.content);
+      this.vehiculoList.sort = this.sort;
     });
   }
 
   public doFilter = (value: string) => {
-    this.vehicleList.filter = value.trim().toLocaleLowerCase();
+    this.vehiculoList.filter = value.trim().toLocaleLowerCase();
   }
 }

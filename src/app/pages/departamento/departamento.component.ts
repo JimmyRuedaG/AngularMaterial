@@ -3,8 +3,6 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { ActivatedRoute } from '@angular/router';
-
-
 import { Departamento } from 'src/app/_model/Departamento';
 import { DepartamentoService } from 'src/app/_service/departamento.service';
 import { LoaderService } from 'src/app/loader/loader.service';
@@ -16,7 +14,7 @@ import { LoaderService } from 'src/app/loader/loader.service';
 })
 
 export class DepartamentoComponent implements OnInit {
-  //departamentos
+  
   displayedColumns: string[] = ['idDepartamento', 'nombre', 'ver'];
   dataSource = new MatTableDataSource<Departamento>();
   @ViewChild('DepartmentPaginator') paginator: MatPaginator;
