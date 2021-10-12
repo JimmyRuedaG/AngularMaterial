@@ -18,7 +18,7 @@ table{
 
 .mat-card{
     border-radius: 25px;
-    margin-top: 100px;
+    margin-top: 5px;
     margin-left: 500px;
 }
 .mat-card-actions .mat-button:first-child, .mat-card-actions .mat-raised-button:first-child, .mat-card-actions .mat-stroked-button:first-child {
