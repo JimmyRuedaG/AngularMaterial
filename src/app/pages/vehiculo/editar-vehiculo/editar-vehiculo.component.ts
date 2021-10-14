@@ -14,7 +14,7 @@ import { BarraDeProgresoService } from 'src/app/_service/barra-de-progreso.servi
   styleUrls: ['./editar-vehiculo.component.css']
 })
 export class EditarVehiculoComponent implements OnInit {
-
+  
   public error: string;
 
   public successMsg: any;
@@ -31,7 +31,7 @@ export class EditarVehiculoComponent implements OnInit {
   vehicle: Vehiculo = new Vehiculo();
 
   veh: any;
-
+  
   constructor(private VehService: VehiculoService, public loadService: BarraDeProgresoService,
     private formBuilder: FormBuilder, private _snackBar: MatSnackBar,
     public errorInterceptor: ErrorInterceptorService, private router: Router,
@@ -48,7 +48,7 @@ export class EditarVehiculoComponent implements OnInit {
   }
 
   loadVehiculo(idVehiculo: number): void {
-    this.VehService.getVehById(idVehiculo).subscribe(data => {
+    this.VehService.getVehId(idVehiculo).subscribe(data => {
       console.log(data);
 
       this.veh = data;

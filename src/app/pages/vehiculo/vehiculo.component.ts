@@ -13,7 +13,7 @@ import { MatSort } from '@angular/material/sort';
   styleUrls: ['./vehiculo.component.css']
 })
 export class VehiculoComponent implements OnInit {
-
+  
   pageEvent: PageEvent;
   displayedColumns: string[] = ['idVehiculo', 'placa', 'modelo', 'marca', 'tipoVehiuclo', 'capacidad', 'editar'];
   columnsToDisplay: string[] = this.displayedColumns.slice();
@@ -32,7 +32,7 @@ export class VehiculoComponent implements OnInit {
   }
 
   private loadVehiculoInfo() {
-    this.VehiculoService.getVehPag(0, 3).pipe(
+    this.VehiculoService.getVeh(0, 3).pipe(
       tap(data => console.log(data)),
       map((vehInfo: VehicleInfo) => this.dataSource = vehInfo)
     ).subscribe(data => {
@@ -45,7 +45,7 @@ export class VehiculoComponent implements OnInit {
     let page = event.pageIndex;
     let size = event.pageSize;
 
-    this.VehiculoService.getVehPag(page, size).pipe(
+    this.VehiculoService.getVeh(page, size).pipe(
       map((vehInfo: VehicleInfo) => this.dataSource = vehInfo)
     ).subscribe(data => {
       this.vehiculoList = new MatTableDataSource(data.content);

@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Vehiculo } from '../_model/vehiculo';
-import { Paginas } from '../_model/paginas';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 
@@ -52,7 +51,7 @@ export class VehiculoService {
     return this.http.put(`${this.url}/editar`, v);
   }
 
-  public getVehPag(page: number, size: number): Observable<VehicleInfo> {
+  public getVeh(page: number, size: number): Observable<VehicleInfo> {
     let params = new HttpParams();
 
     params = params.append('page', String(page));
@@ -64,7 +63,7 @@ export class VehiculoService {
     );
   }
 
-  public getVehById(id: number) {
+  public getVehId(id: number) {
     return this.http.get(`${this.url}/listar/` + id);
   }
 }
