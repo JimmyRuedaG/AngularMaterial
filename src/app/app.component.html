@@ -1,8 +1,9 @@
-<div *ngIf="loaderService.isLoading | async" class="loader-container">
-  <mat-progress-bar color="primary" mode="indeterminate"></mat-progress-bar>
+<div [hidden]="flagProgressBar">
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
 </div>
 
 <div class="example-container">
+
   <mat-toolbar color="primary" class="example-toolbar">
 
     <button mat-icon-button (click)="drawer.toggle()">

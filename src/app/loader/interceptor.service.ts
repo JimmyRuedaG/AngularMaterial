@@ -9,15 +9,15 @@ import { finalize } from 'rxjs/operators';
 })
 export class InterceptorService implements HttpInterceptor {
 
-  constructor(public loaderService: LoaderService) { }
+  constructor(public loadService: LoaderService) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    this.loaderService.isLoading.next(true);
+    this.loadService.isLoading.next(true);
 
     return next.handle(req).pipe(
       finalize(
         () => {
-          this.loaderService.isLoading.next(false);
+          this.loadService.isLoading.next(false);
         }
       )
     );

@@ -2,11 +2,10 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { VehicleInfo, VehiculoService } from '../../_service/vehiculo.service';
 import { Vehiculo } from 'src/app/_model/vehiculo';
 import { ActivatedRoute } from '@angular/router';
-import { LoaderService } from '../../loader/loader.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { map, tap } from 'rxjs/operators';
-import { MatSort, Sort } from '@angular/material/sort';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-vehiculo',
@@ -24,7 +23,7 @@ export class VehiculoComponent implements OnInit {
   @ViewChild('vehiculoPaginator') categoryPaginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private VehiculoService: VehiculoService, public route: ActivatedRoute, public loadService: LoaderService) {
+  constructor(private VehiculoService: VehiculoService, public route: ActivatedRoute) {
   }
 
   ngOnInit(): void {

@@ -52,10 +52,6 @@ export class VehiculoService {
     return this.http.put(`${this.url}/editar`, v);
   }
 
-  public getVeh(page = 0, size = 3) {
-    return this.http.get(`${this.url}/pageable/?page=` + page + `&size=` + size);
-  }
-
   public getVehPag(page: number, size: number): Observable<VehicleInfo> {
     let params = new HttpParams();
 
@@ -66,5 +62,9 @@ export class VehiculoService {
       map((vehInfo: VehicleInfo) => vehInfo),
       catchError(err => throwError(err))
     );
+  }
+
+  public getVehById(id: number) {
+    return this.http.get(`${this.url}/listar/` + id);
   }
 }

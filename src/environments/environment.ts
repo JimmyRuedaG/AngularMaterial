@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  HOST: 'http://143.244.150.210/movitapp-back'
+  HOST: 'http://143.244.150.210/movitapp-back',
+  REINTENTOS: 1
 };
 
 /*

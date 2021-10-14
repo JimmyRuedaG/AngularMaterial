@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LoaderService } from '../app/loader/loader.service';
+import { BarraDeProgresoService } from 'src/app/_service/barra-de-progreso.service'
 
 
 @Component({
@@ -11,10 +11,17 @@ import { LoaderService } from '../app/loader/loader.service';
 
 export class AppComponent implements OnInit {
  
-  constructor(public loaderService: LoaderService) { }
+  constructor(private barraDeProgresoService: BarraDeProgresoService) { }
+
+  public flagProgressBar: boolean = true;
 
   ngOnInit(): void {
    
+    this.barraDeProgresoService.progressBarReactiva.subscribe(data =>{
+      
+      this.flagProgressBar = !this.flagProgressBar;
+      
+    })
 
   }
 }

@@ -13,8 +13,11 @@ import { InterceptorService } from '../app/loader/interceptor.service';
 import { DepartamentoComponent } from './pages/departamento/departamento.component';
 import { VehiculoComponent } from './pages/vehiculo/vehiculo.component';
 import { CiudadComponent } from './pages/departamento/ciudad/ciudad.component';
-import { AgregarComponent } from './pages/vehiculo/agregar/agregar.component';
+import { AgregarComponent } from './pages/vehiculo/agregar/agregar.component'
 import { EditarVehiculoComponent } from './pages/vehiculo/editar-vehiculo/editar-vehiculo.component';
+import { Error500Component } from './pages/error500/error500.component';
+import { IndexComponent } from './pages/index/index.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +29,10 @@ import { EditarVehiculoComponent } from './pages/vehiculo/editar-vehiculo/editar
     VehiculoComponent,
     CiudadComponent,
     AgregarComponent,
-    EditarVehiculoComponent
+    EditarVehiculoComponent,
+    Error500Component,
+    IndexComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +43,8 @@ import { EditarVehiculoComponent } from './pages/vehiculo/editar-vehiculo/editar
     HttpClientModule
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },
+    // { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptorService, multi: true }
   ],
   bootstrap: [AppComponent]
 })

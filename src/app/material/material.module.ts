@@ -16,13 +16,17 @@ import { MatCardModule } from '@angular/material/card';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
     MatButtonModule,
+    FormsModule,
     MatIconModule,
+    ReactiveFormsModule,
     MatDividerModule,
     MatProgressBarModule,
     MatTableModule,
@@ -36,9 +40,12 @@ import { MatOptionModule } from '@angular/material/core';
     MatCardModule,
     MatSnackBarModule,
     MatSelectModule,
-    MatOptionModule,    
+    MatOptionModule,
+    
   ], exports: [
     MatButtonModule,
+    ReactiveFormsModule,
+    FormsModule,
     MatIconModule,
     MatDividerModule,
     MatProgressBarModule,
