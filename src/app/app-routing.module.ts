@@ -13,6 +13,7 @@ import { Error500Component } from './pages/error500/error500.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 const routes: Routes = [
+  { path: '', component: BuscarComponent },
   { path: 'login', component: LoginComponent },
   { path: 'registro', component: RegistroComponent },
   { path: 'inicio', component: AppComponent },

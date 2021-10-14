@@ -19,7 +19,7 @@
         </ng-template>
     </div>
 
-    <mat-card-content [formGroup]="form" (ngSubmit)="editarVehiculo($event)">
+    <form [formGroup]="form" (ngSubmit)="editarVehiculo($event)">
     
         <mat-form-field appearance="outline">
             <mat-label>Placa</mat-label>
@@ -55,18 +55,18 @@
             <input matInput [ngModel]="veh.marca" type="text" placeholder="Ej:Ford" formControlName="marca">
             <mat-label>marca</mat-label>
             <mat-select [ngModel]="veh.marca" [(value)]="selectedValue2" formControlName="marca">
-                <mat-option value="option">Seleccionar</mat-option>
-                <mat-option value="option">Toyota</mat-option>
-                <mat-option value="option">Chevrolet</mat-option>
-                <mat-option value="option">Reanult</mat-option>
-                <mat-option value="option">Mazda</mat-option>
-                <mat-option value="option">Merdedes</mat-option>
-                <mat-option value="option">BMW</mat-option>
-                <mat-option value="option">Alfa Romeo</mat-option>
-                <mat-option value="option">Audi</mat-option>
-                <mat-option value="option">Ferrari</mat-option>
-                <mat-option value="option">Peugeot</mat-option>
-                <mat-option value="option">Porche</mat-option>
+                <mat-option value="Seleccionar">Seleccionar</mat-option>
+                <mat-option value="Toyota">Toyota</mat-option>
+                <mat-option value="Chevrolet">Chevrolet</mat-option>
+                <mat-option value="Reanult">Reanult</mat-option>
+                <mat-option value="Mazda">Mazda</mat-option>
+                <mat-option value="Merdedes">Merdedes</mat-option>
+                <mat-option value="BMW">BMW</mat-option>
+                <mat-option value="Alfa Romeo">Alfa Romeo</mat-option>
+                <mat-option value="Audi">Audi</mat-option>
+                <mat-option value="Ferrari">Ferrari</mat-option>
+                <mat-option value="Peugeot">Peugeot</mat-option>
+                <mat-option value="Porche">Porche</mat-option>
             </mat-select>
             <mat-icon matSuffix>garage</mat-icon>
         </mat-form-field>
@@ -81,11 +81,11 @@
         <mat-form-field appearance="outline">
             <mat-label>Tipo de vehiculo</mat-label>
         <mat-select [ngModel]="veh.tipoVehiuclo" [(value)]="selectedValue" formControlName="tipoVehiculo">
-                <mat-option value="option">Seleccionar</mat-option>
-                <mat-option value="option">Carro</mat-option>
-                <mat-option value="option">Camioneta</mat-option>
-                <mat-option value="option">Furgon</mat-option>
-                <mat-option value="option">Campero</mat-option>
+                <mat-option value="Seleccionar">Seleccionar</mat-option>
+                <mat-option value="Carro">Carro</mat-option>
+                <mat-option value="Camioneta">Camioneta</mat-option>
+                <mat-option value="Furgon">Furgon</mat-option>
+                <mat-option value="Campero">Campero</mat-option>
             </mat-select>
             <mat-icon matSuffix>garage</mat-icon>
         </mat-form-field>
@@ -108,8 +108,6 @@
         </p>
     </div>
     
-    </mat-card-content>
-    
     <mat-card-actions>
         <button mat-icon-button type="submit">
             <mat-icon>save</mat-icon>
@@ -117,5 +115,9 @@
         </button>
         <button mat-button [routerLink]="['/vehiculo']"> Regresar </button>
     </mat-card-actions>
+
+</form>
+    
+    
     </mat-card>
 
