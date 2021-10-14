@@ -9,6 +9,8 @@ import { CiudadComponent } from './pages/departamento/ciudad/ciudad.component'
 import { VehiculoComponent } from './pages/vehiculo/vehiculo.component';
 import { AgregarComponent } from './pages/vehiculo/agregar/agregar.component';
 import { EditarVehiculoComponent } from './pages/vehiculo/editar-vehiculo/editar-vehiculo.component';
+import { Error500Component } from './pages/error500/error500.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -24,8 +26,9 @@ const routes: Routes = [
     path: 'departamento', component: DepartamentoComponent, children: [
       { path: 'ciudad/:idDep', component: CiudadComponent  }
     ]
-  },
-  { path: '**', component: LoginComponent }
+  }, 
+  { path: 'error500', component: Error500Component },
+  { path: '**', component: NotFoundComponent }
 
 ];
 

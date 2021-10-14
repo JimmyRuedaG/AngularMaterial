@@ -78,7 +78,7 @@ export class AgregarComponent implements OnInit {
 
   openSnackBarSuccess(): void {
     this._snackBar.open(this.successMsg, 'Cerrar', {
-      duration: 10000,
+      duration: 1000,
       horizontalPosition: this.horizontalPosition,
       verticalPosition: this.verticalPosition,
     });
