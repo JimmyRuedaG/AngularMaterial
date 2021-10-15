@@ -14,24 +14,18 @@ import { BarraDeProgresoService } from 'src/app/_service/barra-de-progreso.servi
   styleUrls: ['./editar-vehiculo.component.css']
 })
 export class EditarVehiculoComponent implements OnInit {
-  
+
   public error: string;
-
   public successMsg: any;
-
   public selectedValue: string;
-
   public selectedValue2: string;
-
-  horizontalPosition: MatSnackBarHorizontalPosition = 'start';
-  verticalPosition: MatSnackBarVerticalPosition = 'top';
 
   form: FormGroup;
 
   vehicle: Vehiculo = new Vehiculo();
 
   veh: any;
-  
+
   constructor(private VehService: VehiculoService, public loadService: BarraDeProgresoService,
     private formBuilder: FormBuilder, private _snackBar: MatSnackBar,
     public errorInterceptor: ErrorInterceptorService, private router: Router,
@@ -97,22 +91,14 @@ export class EditarVehiculoComponent implements OnInit {
         capacidad: ['', [Validators.required]],
       });
 
-  
-  }
 
-  openSnackBar() {
-    this._snackBar.open(this.error, 'Cerrar', {
-      duration: 10000,
-      horizontalPosition: this.horizontalPosition,
-      verticalPosition: this.verticalPosition,
-    });
   }
 
   openSnackBarSuccess(): void {
     this._snackBar.open(this.successMsg, 'Cerrar', {
       duration: 10000,
-      horizontalPosition: this.horizontalPosition,
-      verticalPosition: this.verticalPosition,
+      horizontalPosition: 'center',
+      verticalPosition: 'top',
     });
   }
 }

@@ -11,11 +11,8 @@ import { BarraDeProgresoService } from '../_service/barra-de-progreso.service';
   providedIn: 'root'
 })
 export class ErrorInterceptorService implements HttpInterceptor {
-
-  horizontalPosition: MatSnackBarHorizontalPosition = 'start';
-  verticalPosition: MatSnackBarVerticalPosition = 'top';
-
-  constructor(private _snackBar: MatSnackBar, private router: Router, private loader: BarraDeProgresoService) { }
+  
+  constructor(private _snackBar: MatSnackBar, private router: Router, private barraDeProgreso: BarraDeProgresoService) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     console.log('Entró al interceptor');
@@ -27,11 +24,8 @@ export class ErrorInterceptorService implements HttpInterceptor {
         }
       }
     })).pipe(catchError((err) => {
-
-      console.log(err);
-
-    
-      this.loader.progressBarReactiva.next(true);
+      
+      this.barraDeProgreso.progressBarReactiva.next(true);
       const str = err.error.message;
 
       const statusCode = err.error.status.toString();
@@ -41,6 +35,7 @@ export class ErrorInterceptorService implements HttpInterceptor {
       } else if (statusCode.charAt(0) === '5') {
         this.router.navigate(['/error500']);
       }
+
       return EMPTY;
     }));
   }
@@ -48,8 +43,8 @@ export class ErrorInterceptorService implements HttpInterceptor {
   openSnackBar(error: string): void {
     this._snackBar.open(error, 'Cerrar', {
       duration: 10000,
-      horizontalPosition: this.horizontalPosition,
-      verticalPosition: this.verticalPosition,
+      horizontalPosition: 'center',
+      verticalPosition: 'top',
     });
   }
 }

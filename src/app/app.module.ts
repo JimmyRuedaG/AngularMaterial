@@ -18,6 +18,7 @@ import { EditarVehiculoComponent } from './pages/vehiculo/editar-vehiculo/editar
 import { Error500Component } from './pages/error500/error500.component';
 import { IndexComponent } from './pages/index/index.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { ErrorInterceptorService } from './_share/error-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,7 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },
-    // { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptorService, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptorService, multi: true }
   ],
   bootstrap: [AppComponent]
 })

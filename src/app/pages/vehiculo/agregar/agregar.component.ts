@@ -15,16 +15,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 export class AgregarComponent implements OnInit {
 
   public error: string;
-
   public successMsg: any;
-
   public selectedValue: string;
-
   public selectedValue2: string;
-
-
-  horizontalPosition: MatSnackBarHorizontalPosition = 'start';
-  verticalPosition: MatSnackBarVerticalPosition = 'top';
 
   form: FormGroup;
 
@@ -79,8 +72,9 @@ export class AgregarComponent implements OnInit {
   openSnackBarSuccess(): void {
     this._snackBar.open(this.successMsg, 'Cerrar', {
       duration: 1000,
-      horizontalPosition: this.horizontalPosition,
-      verticalPosition: this.verticalPosition,
+      horizontalPosition: 'center',
+      verticalPosition: 'top',
     });
   }
+  
 }
