@@ -39,7 +39,7 @@
     
         <mat-form-field appearance="outline">
             <mat-label>Modelo</mat-label>
-            <input matInput [ngModel]="veh.modelo" type="text" placeholder="Ej:2008" formControlName="modelo">
+            <input matInput [ngModel]="veh.modelo" type="number" placeholder="Ej:2008" formControlName="modelo">
             <mat-icon matSuffix>numbers</mat-icon>
         </mat-form-field>
         <div *ngIf="form.get('modelo').errors && form.get('modelo').touched">

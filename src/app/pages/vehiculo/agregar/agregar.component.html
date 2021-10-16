@@ -20,12 +20,10 @@
                 Es un campo requerido
             </p>
         </div>
-
-
-
+    
         <mat-form-field appearance="outline">
             <mat-label>Modelo</mat-label>
-            <input matInput type="text" placeholder="Ej:2008" formControlName="modelo">
+            <input matInput type="number" placeholder="Ej:2008" formControlName="modelo">
             <mat-icon matSuffix>numbers</mat-icon>
         </mat-form-field>
         <div *ngIf="form.get('modelo').errors && form.get('modelo').touched">
