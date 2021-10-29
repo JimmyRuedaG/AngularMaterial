@@ -5,14 +5,22 @@ import { EMPTY, Observable } from 'rxjs';
 import { catchError, retry, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
+import { ErrorLogService, ResultJson } from 'src/app/_logueo/error-log.service';
 import { BarraDeProgresoService } from '../_service/barra-de-progreso.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ErrorInterceptorService implements HttpInterceptor {
-  
-  constructor(private _snackBar: MatSnackBar, private router: Router, private barraDeProgreso: BarraDeProgresoService) { }
+
+  horizontalPosition: MatSnackBarHorizontalPosition = 'start';
+  verticalPosition: MatSnackBarVerticalPosition = 'top';
+
+  resultJson: ResultJson;
+  ResultJsonString: any;
+
+  constructor(private _snackBar: MatSnackBar, private router: Router, private loader: BarraDeProgresoService,
+    private errorLog: ErrorLogService) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     console.log('Entró al interceptor');
@@ -23,19 +31,44 @@ export class ErrorInterceptorService implements HttpInterceptor {
           throw new Error(event.body.errorMessage);
         }
       }
-    })).pipe(catchError((err) => {
+    })).pipe(catchError((error) => {
+
+      console.log(error);
+
       
-      this.barraDeProgreso.progressBarReactiva.next(true);
-      const str = err.error.message;
+      this.loader.progressBarReactiva.next(true);
+      const str = error.error.message;
+      const str0 = error.error.error_description;
 
-      const statusCode = err.error.status.toString();
+      
 
-      if (statusCode.charAt(0) === '4') {
+      if (error.status === 400) {
         this.openSnackBar(str.slice(4, str.length));
-      } else if (statusCode.charAt(0) === '5') {
+      } else if (error.status === 401) {
+        if (str === 'No estas autorizado para acceder a este recurso') {
+          this.openSnackBar(str);
+          this.router.navigate(['/unauthorized']);
+        } else {
+          this.openSnackBar(str0.slice(4, str0.length));
+        }
+
+        if (error.error.error === 'invalid_token') {
+          this.openSnackBar('Token inválido');
+          sessionStorage.clear();
+          this.router.navigate(['/unauthorized']).then(() => { window.location.reload(); });
+        }
+      } else if (error.status === 404) {
+        this.openSnackBar(str.slice(4, str.length));
+        this.openSnackBar(error.error.message);
+      } else if (error.error.status === 405) {
+        this.openSnackBar(str.slice(4, str.length));
+        this.openSnackBar(error.error.message);
+      } else if (error.error.status === 415) {
+        this.openSnackBar(str.slice(4, str.length));
+        this.openSnackBar(error.error.message);
+      } else if (error.error.status === 500) {
         this.router.navigate(['/error500']);
       }
-
       return EMPTY;
     }));
   }
@@ -46,5 +79,5 @@ export class ErrorInterceptorService implements HttpInterceptor {
       horizontalPosition: 'center',
       verticalPosition: 'top',
     });
-  }
+    }
 }

@@ -1,3 +1,8 @@
+<div *ngIf="loadService.isLoading | async" class="loader-container">
+<mat-progress-bar color="primary" mode="indeterminate"></mat-progress-bar>
+</div>
+
+<div>
 <mat-card class="example-card">
     <mat-card-header>
         <div mat-card-avatar class="example-header-image"></div>
@@ -101,3 +106,4 @@
 
 
 </mat-card>
+</div>

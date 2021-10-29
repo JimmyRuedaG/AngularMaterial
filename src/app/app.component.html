@@ -4,79 +4,80 @@
 
 <div class="example-container">
 
-  <mat-toolbar color="primary" class="example-toolbar">
 
+  <mat-toolbar color="primary" class="example-toolbar">
+  
     <button mat-icon-button (click)="drawer.toggle()">
       <mat-icon *ngIf="!drawer.opened">menu</mat-icon>
       <mat-icon *ngIf="drawer.opened">close</mat-icon>
     </button>
     <h1 class="example-app-name">ENVIOS UDEC</h1>
-
-
+  
+  
     <span class="example-spacer"></span>
-
+  
     <button mat-icon-button [matMenuTriggerFor]="menu">
       <mat-icon>more_vert</mat-icon>
     </button>
-
+  
     <mat-menu #menu="matMenu">
-      <button mat-menu-item [routerLink]="['/perfil']">
-        <mat-icon>account_box</mat-icon>
-        <span>Mi Perfil</span>
-      </button>
-      <button mat-menu-item>
-        <mat-icon>exit_to_app</mat-icon>
-        <span>Cerrar Sesión</span>
+      <ng-container *ngIf="this.isLogged">
+        <button mat-menu-item routerLink="/buscar">
+          <mat-icon>search</mat-icon>
+          <span>Buscar</span>
+        </button>
+      </ng-container>
+      <ng-container *ngIf="!this.isLogged">
+        <button mat-menu-item routerLink="/registro">
+          <mat-icon>account_circle</mat-icon>
+          <span>Registro</span>
+        </button>
+      </ng-container>
+      <button mat-menu-item routerLink="/">
+        <mat-icon>home</mat-icon>
+        <span>Página principal</span>
       </button>
     </mat-menu>
-
-
   </mat-toolbar>
 
   <mat-drawer-container class="example-sidenav-content" autosize>
-    <mat-drawer #drawer style="width: 200px" mode="side">
+    <mat-drawer #drawer class="example-sidenav" mode="side">
+      <ng-container *ngIf="!this.isLogged">
 
-      <button mat-menu-item style="cursor: pointer" (click)="drawer.toggle()" [routerLink]="['/Inicio']">
-        <mat-icon>first_page</mat-icon>
-        <span>Inicio</span>
-      </button>
-      <mat-divider></mat-divider>
+        <button mat-menu-item style="cursor: pointer" (click)="drawer.toggle()" [routerLink]="['/login']">
+          <mat-icon>login</mat-icon>
+          <span>Ingresar</span>
+        </button>
+        <mat-divider></mat-divider>
+      </ng-container>
+  
+      <ng-container *ngIf="this.isLogged">
 
-      <button mat-menu-item style="cursor: pointer" (click)="drawer.toggle()" [routerLink]="['/buscar']">
-        <mat-icon>search</mat-icon>
-        <span>Buscar</span>
-      </button>
-      <mat-divider></mat-divider>
-
-      <button mat-menu-item style="cursor: pointer" (click)="drawer.toggle()" [routerLink]="['/vehiculo']">
-        <mat-icon>commute</mat-icon>
-        <span>Vehiculo</span>
-      </button>
-      <mat-divider></mat-divider>
-
-      <button mat-menu-item style="cursor: pointer" (click)="drawer.toggle()" [routerLink]="['/registro']">
-        <mat-icon>how_to_reg</mat-icon>
-        <span>Resgistro</span>
-      </button>
-      <mat-divider></mat-divider>
-
-      <button mat-menu-item style="cursor: pointer" (click)="drawer.toggle()" [routerLink]="['/departamento']">
-        <mat-icon>share_location</mat-icon>
-        <span>Departamento</span>
-      </button>
-      <mat-divider></mat-divider>
-
-      <button mat-menu-item style="cursor: pointer" (click)="drawer.toggle()" [routerLink]="['/login']">
-        <mat-icon>login</mat-icon>
-        <span>Ingresar</span>
-      </button>
-      <mat-divider></mat-divider>
+        <button mat-menu-item (click)="logout()">
+          <mat-icon>logout</mat-icon>
+          <span>Cerrar sesión</span>
+        </button>
+  
+        <button mat-menu-item style="cursor: pointer" (click)="drawer.toggle()" [routerLink]="['/vehiculo']">
+          <mat-icon>commute</mat-icon>
+          <span>Vehiculo</span>
+        </button>
+        <mat-divider></mat-divider>
+  
+        <button mat-menu-item style="cursor: pointer" (click)="drawer.toggle()" [routerLink]="['/departamento']">
+          <mat-icon>share_location</mat-icon>
+          <span>Departamento</span>
+        </button>
+        <mat-divider></mat-divider>
+      </ng-container>
     </mat-drawer>
-
-    <div class="example-sidenav-content">
+  
+    <br>
+  
+    <mat-drawer-content>
       <router-outlet></router-outlet>
-    </div>
-
+    </mat-drawer-content>
+  
+    <br>
+  
   </mat-drawer-container>
-
-</div>

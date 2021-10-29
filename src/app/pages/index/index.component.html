@@ -1,50 +1,75 @@
 <div [hidden]="route.children.length !== 0">
-    <div class="center">
-        <h1>
-            Página en Angular
-        </h1>
+
+<div class="row">
+    <div class="column">
+        <ng-container *ngIf="this.isLogged">
+            <mat-card class="example-card">
+                
+                <mat-card-header>
+                    <mat-card-title>Ver vehículos</mat-card-title>
+                    <mat-card-subtitle>Ver la lista de vehículos registrados</mat-card-subtitle>
+                </mat-card-header>
+                <div class="center frame">
+                    <img class="img" src="assets/carros.jpg">
+                </div>
+                <mat-card-content>
+                    <p>
+                        En esta sección podrá visualizar la lista de vehículos registrados hasta el momento
+                        en la plataforma, también podrá editar la información o agregar un nuevo vehículo.
+                    </p>
+                </mat-card-content>
+
+                <mat-card-actions class="center">
+                    <button mat-raised-button routerLink="/vehiculo">Acceder</button>
+                </mat-card-actions>
+
+            </mat-card>
+        </ng-container>
     </div>
 
-    <br>
-
-    
-
-    <br>
-
-    <div>
-        <h2 class="center">Lorem Ipsum</h2>
+    <div class="column">
+        <ng-container *ngIf="!this.isLogged">
+            <mat-card class="example-card">
+                <mat-card-header>
+                    <mat-card-title>Login</mat-card-title>
+                    <mat-card-subtitle>Para acceder a todas las funciones</mat-card-subtitle>
+                </mat-card-header>
+                <div class="center">
+                    <img mat-card-image src="assets/login.png">
+                </div>
+                <mat-card-content>
+                    <p>
+                        Inicie sesión para acceder a todos los espacios de esta app, encontraras:
+                        registrar su vehículo, editarlo. También podrá ver la lista de los departamentos
+                        y ciudades
+                    </p>
+                </mat-card-content>
+                <mat-card-actions class="center">
+                    <button mat-raised-button routerLink="/login">Acceder</button>
+                </mat-card-actions>
+            </mat-card>
+        </ng-container>
     </div>
-    <div>
-        <p class="alinear">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia labore doloremque quasi.
-            Laudantium natus accusamus quos consequatur, sed esse nemo dignissimos fugiat incidunt
-            error harum optio omnis magni voluptates repellendus.
-            Etiam maximus hendrerit ipsum in porta. Curabitur libero sem, mattis in est dictum, accumsan
-            auctor ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sodales luctus accumsan.
-            Proin varius mattis tortor, non porttitor tortor interdum sed. Cras ut gravida risus. Nulla
-            fringilla dictum urna nec feugiat. Vivamus eget tempor arcu. Donec dignissim mi in felis gravida, ac
-            rutrum ante elementum. Vestibulum vel diam ac arcu ultrices vehicula id ac turpis. Sed a libero vitae
-            nunc mattis sollicitudin a at diam. Integer risus elit, sodales et tempor at, laoreet eget leo. Sed
-            sodales, velit at maximus sollicitudin, libero purus varius dui, in sollicitudin ipsum metus vel turpis.
-            Quisque vel varius odio. Pellentesque dictum, diam eu tristique ultrices, nisl dui venenatis sapien, rutrum
-            ultricies arcu eros quis ligula.
-            Suspendisse vitae mauris lacus. Mauris tincidunt ex sit amet tempor commodo. Etiam est nisi, rutrum a
-            suscipit eu, pretium vitae dolor. Donec sed interdum augue, tincidunt auctor ex. Vivamus eget magna
-            vitae mi mollis dapibus quis a purus. Nullam sagittis turpis nisi, non ullamcorper nisi aliquam suscipit.
-            Quisque mollis accumsan nisi gravida commodo. Donec et massa ac velit tristique mollis. Aliquam sit amet
-            iaculis sem. Curabitur in mollis odio, ac vulputate risus. Donec non feugiat dolor, vitae aliquam sem.
-            Nulla ut tortor a odio lacinia aliquam ut id dolor. Ut ligula nunc, dapibus vitae bibendum a, scelerisque
-            eu lectus. Vivamus convallis rutrum diam, in mattis tortor blandit ac.
-            Nam at neque eleifend, efficitur magna quis, ultricies metus. Cras non sem ornare lacus tempus venenatis.
-            Proin iaculis, neque id accumsan blandit, risus nisl varius leo, in vestibulum arcu libero id sapien.
-            Pellentesque ultrices molestie egestas. Etiam sit amet dui sed elit pharetra tristique vitae eu lacus.
-            Nulla eget augue eu erat blandit hendrerit ut sed libero. Maecenas euismod luctus varius. Curabitur ut
-            mollis mi, sit amet venenatis risus. Proin hendrerit volutpat nisi, dictum condimentum turpis ultricies
-            eget.
-            Sed nunc tortor, malesuada eu porttitor vitae, dignissim in tellus. Lorem ipsum dolor sit amet, consectetur
-            adipiscing elit. Donec quis enim elementum, fringilla tortor non, egestas nisl. Maecenas a felis est.
-            Aliquam sed egestas nisi. Maecenas felis ligula, rhoncus ut metus ut, volutpat dapibus lacus.
-            Duis et diam sit amet leo pretium efficitur.
-        </p>
+    <div class="column">
+        <ng-container *ngIf="this.isLogged">
+            <mat-card class="example-card">
+                <mat-card-header>
+                    <mat-card-title>Ver departamentos</mat-card-title>
+                    <mat-card-subtitle>Ver la lista de departamentos</mat-card-subtitle>
+                </mat-card-header>
+                <div class="center">
+                    <img mat-card-image src="assets/colombia.jpg">
+                </div>
+                <mat-card-content>
+                    <p>
+                        En esta sección podrá visualizar la lista de departamentos y ciudades.
+                    </p>
+                </mat-card-content>
+                <mat-card-actions class="center">
+                    <button mat-raised-button routerLink="/departamento">Acceder</button>
+                </mat-card-actions>
+            </mat-card>
+        </ng-container>
     </div>
+</div>
 </div>

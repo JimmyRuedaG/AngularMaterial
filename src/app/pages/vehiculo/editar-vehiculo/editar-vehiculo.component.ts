@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Vehiculo } from 'src/app/_model/vehiculo';
 import { VehiculoService } from 'src/app/_service/vehiculo.service';
-import { Error } from 'src/app/_model/error';
 import { FormGroup, FormBuilder, FormControl, Validator, Validators } from '@angular/forms';
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 import { ErrorInterceptorService } from 'src/app/_share/error-interceptor.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { BarraDeProgresoService } from 'src/app/_service/barra-de-progreso.service';
+import { VehiculoComponent } from '../vehiculo.component';
 
 @Component({
   selector: 'app-editar-vehiculo',
@@ -16,9 +16,15 @@ import { BarraDeProgresoService } from 'src/app/_service/barra-de-progreso.servi
 export class EditarVehiculoComponent implements OnInit {
 
   public error: string;
+
   public successMsg: any;
+
   public selectedValue: string;
+
   public selectedValue2: string;
+
+  horizontalPosition: MatSnackBarHorizontalPosition = 'start';
+  verticalPosition: MatSnackBarVerticalPosition = 'top';
 
   form: FormGroup;
 
@@ -29,7 +35,7 @@ export class EditarVehiculoComponent implements OnInit {
   constructor(private VehService: VehiculoService, public loadService: BarraDeProgresoService,
     private formBuilder: FormBuilder, private _snackBar: MatSnackBar,
     public errorInterceptor: ErrorInterceptorService, private router: Router,
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute, private updtList: VehiculoComponent) {
     this.buildForm();
   }
 
@@ -70,6 +76,7 @@ export class EditarVehiculoComponent implements OnInit {
         console.log(success);
         this.successMsg = 'Vehículo correctamente actualizado';
         this.openSnackBarSuccess();
+        this.updtList.listVehicles();
         this.router.navigate(['/vehiculo']);
         this.form.reset();
       }, err => {
@@ -91,14 +98,21 @@ export class EditarVehiculoComponent implements OnInit {
         capacidad: ['', [Validators.required]],
       });
 
+  }
 
+  openSnackBar(): void {
+    this._snackBar.open(this.error, 'Cerrar', {
+      duration: 10000,
+      horizontalPosition: this.horizontalPosition,
+      verticalPosition: this.verticalPosition,
+    });
   }
 
   openSnackBarSuccess(): void {
     this._snackBar.open(this.successMsg, 'Cerrar', {
       duration: 10000,
-      horizontalPosition: 'center',
-      verticalPosition: 'top',
+      horizontalPosition: this.horizontalPosition,
+      verticalPosition: this.verticalPosition,
     });
   }
 }

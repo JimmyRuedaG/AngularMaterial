@@ -11,9 +11,11 @@ import { AgregarComponent } from './pages/vehiculo/agregar/agregar.component';
 import { EditarVehiculoComponent } from './pages/vehiculo/editar-vehiculo/editar-vehiculo.component';
 import { Error500Component } from './pages/error500/error500.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { UnauthorizedComponent } from './pages/unauthorized/unauthorized.component';
+import { IndexComponent } from './pages/index/index.component';
 
 const routes: Routes = [
-  { path: '', component: BuscarComponent },
+  { path: '', component: IndexComponent },
   { path: 'login', component: LoginComponent },
   { path: 'registro', component: RegistroComponent },
   { path: 'inicio', component: AppComponent },
@@ -28,6 +30,8 @@ const routes: Routes = [
       { path: 'ciudad/:idDep', component: CiudadComponent  }
     ]
   }, 
+  { path: 'index', component: IndexComponent },
+  { path: 'unauthorized', component: UnauthorizedComponent },
   { path: 'error500', component: Error500Component },
   { path: '**', component: NotFoundComponent }
 

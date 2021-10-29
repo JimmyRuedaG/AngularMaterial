@@ -5,7 +5,10 @@
 export const environment = {
   production: false,
   HOST: 'http://159.223.107.103:8080/movitapp-backend',
-  REINTENTOS: 1
+  REINTENTOS: 1,
+  TOKEN_AUTH_USERNAME: 'mitomediapp',
+  TOKEN_AUTH_PASSWORD: 'mito89codex',
+  TOKEN: 'Token'
 };
 
 /*

@@ -64,3 +64,10 @@ button {
     color: cadetblue;
     background: transparent;
 }
+
+.mat-h2, .mat-title, .mat-typography h2 {
+    font: 0 20px/32px Roboto, "Helvetica Neue", sans-serif;
+    letter-spacing: normal;
+    margin: 0px -845px -10px;
+        margin-right: -845px;
+}

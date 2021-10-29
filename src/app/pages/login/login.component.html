@@ -1,1 +1,37 @@
-<h1>Componente login</h1>
+<h2 class="center">Login</h2>
+<div *ngIf="loadService.isLoading | async" class="loader-container">
+    <mat-progress-bar color="primary" mode="indeterminate"></mat-progress-bar>
+</div>
+
+<br>
+
+<div>
+    <form [formGroup]="form" (ngSubmit)="login($event)">
+        <mat-form-field class="center">
+            <mat-label>Nombre de usuario</mat-label>
+            <input matInput type="text" placeholder="Ej: Admin" formControlName="username">
+        </mat-form-field>
+        <div class="center" *ngIf="form.get('username').errors && form.get('username').touched">
+            <p *ngIf="form.get('username').hasError('required')">
+                Es un campo requerido
+            </p>
+        </div>
+
+        <mat-form-field class="center">
+            <mat-label>Contraseña</mat-label>
+            <input matInput type="password" formControlName="password">
+        </mat-form-field>
+        <div class="center" *ngIf="form.get('password').errors && form.get('password').touched">
+            <p *ngIf="form.get('password').hasError('required')">
+                Es un campo requerido
+            </p>
+        </div>
+
+        <div class="center">
+            <button mat-icon-button type="submit">
+                <span>Iniciar sesión</span>
+                <mat-icon>login</mat-icon>
+            </button>
+        </div>
+    </form>
+</div>

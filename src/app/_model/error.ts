@@ -1,6 +1,5 @@
 export class Error {
-    error: string;
-    message: string;
-    path: string;
-    status: number;
+    id_error: number;
+    status_error: number;
+    error_msg: string;
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { LoginService } from 'src/app/_service/login.service';
 
 @Component({
   selector: 'app-index',
@@ -8,9 +9,12 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class IndexComponent implements OnInit {
 
-  constructor(public route: ActivatedRoute) { }
+  public isLogged: boolean;
+
+  constructor(public route: ActivatedRoute, private login: LoginService) { }
 
   ngOnInit(): void {
+    this.isLogged = this.login.isLogged();
   }
 
 }

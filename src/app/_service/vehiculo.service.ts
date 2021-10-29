@@ -51,7 +51,7 @@ export class VehiculoService {
     return this.http.put(`${this.url}/editar`, v);
   }
 
-  public getVeh(page: number, size: number): Observable<VehicleInfo> {
+  public getVehPag(page: number, size: number): Observable<VehicleInfo> {
     let params = new HttpParams();
 
     params = params.append('page', String(page));

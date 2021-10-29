@@ -20,12 +20,13 @@
     </div>
 
     <form [formGroup]="form" (ngSubmit)="editarVehiculo($event)">
-    
+
         <mat-form-field appearance="outline">
             <mat-label>Placa</mat-label>
             <input matInput [ngModel]="veh.placa" type="text" placeholder="Ej:abc-123" formControlName="placa">
             <mat-icon matSuffix>style</mat-icon>
         </mat-form-field>
+
         <div *ngIf="form.get('placa').errors && form.get('placa').touched">
             <p *ngIf="form.get('placa').hasError('maxlength') || form.get('placa').hasError('minlength')">
                 Placa inválida. Ej: abc-123
@@ -34,14 +35,15 @@
                 Es un campo requerido
             </p>
         </div>
-    
-    
-    
+
+
+
         <mat-form-field appearance="outline">
             <mat-label>Modelo</mat-label>
             <input matInput [ngModel]="veh.modelo" type="number" placeholder="Ej:2008" formControlName="modelo">
             <mat-icon matSuffix>numbers</mat-icon>
         </mat-form-field>
+
         <div *ngIf="form.get('modelo').errors && form.get('modelo').touched">
             <p *ngIf="form.get('modelo').hasError('required')">
                 Es un campo requerido
@@ -50,7 +52,7 @@
                 Modelos entre 1970 y 2022
             </p>
         </div>
-    
+
         <mat-form-field appearance="outline">
             <input matInput [ngModel]="veh.marca" type="text" placeholder="Ej:Ford" formControlName="marca">
             <mat-label>marca</mat-label>
@@ -75,12 +77,12 @@
                 Es un campo requerido
             </p>
         </div>
-    
-    
-    
+
+
+
         <mat-form-field appearance="outline">
             <mat-label>Tipo de vehiculo</mat-label>
-        <mat-select [ngModel]="veh.tipoVehiuclo" [(value)]="selectedValue" formControlName="tipoVehiculo">
+            <mat-select [ngModel]="veh.tipoVehiuclo" [(value)]="selectedValue" formControlName="tipoVehiculo">
                 <mat-option value="Seleccionar">Seleccionar</mat-option>
                 <mat-option value="Carro">Carro</mat-option>
                 <mat-option value="Camioneta">Camioneta</mat-option>
@@ -94,30 +96,27 @@
                 Es un campo requerido
             </p>
         </div>
-    
-    
-    
+
+
+
         <mat-form-field appearance="outline">
             <mat-label>Capacidad</mat-label>
             <input matInput [ngModel]="veh.capacidad" type="text" placeholder="Ej:150Kg" formControlName="capacidad">
             <mat-icon matSuffix>fitness_center</mat-icon>
         </mat-form-field>
-    <div *ngIf="form.get('capacidad').errors && form.get('capacidad').touched">
-        <p *ngIf="form.get('capacidad').hasError('required')">
-            Es un campo requerido
-        </p>
-    </div>
-    
-    <mat-card-actions>
-        <button mat-icon-button type="submit">
-            <mat-icon>save</mat-icon>
-            <span>Registrar</span>
-        </button>
-        <button mat-button [routerLink]="['/vehiculo']"> Regresar </button>
-    </mat-card-actions>
+        <div *ngIf="form.get('capacidad').errors && form.get('capacidad').touched">
+            <p *ngIf="form.get('capacidad').hasError('required')">
+                Es un campo requerido
+            </p>
+        </div>
 
-</form>
-    
-    
-    </mat-card>
+        <mat-card-actions>
+            <button mat-icon-button type="submit">
+                <mat-icon>save</mat-icon>
+                <span>Registrar</span>
+            </button>
+            <button mat-button [routerLink]="['/vehiculo']"> Regresar </button>
+        </mat-card-actions>
 
+    </form>
+</mat-card>
