@@ -9,7 +9,7 @@
     <form [formGroup]="form" (ngSubmit)="login($event)">
         <mat-form-field class="center">
             <mat-label>Nombre de usuario</mat-label>
-            <input matInput type="text" placeholder="Ej: Admin" formControlName="username">
+            <input matInput type="text" placeholder="Ej: Administrador" formControlName="username">
         </mat-form-field>
         <div class="center" *ngIf="form.get('username').errors && form.get('username').touched">
             <p *ngIf="form.get('username').hasError('required')">
