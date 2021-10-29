@@ -5,11 +5,7 @@
 }
 
 .div-right{
-    float: right;
-}
-
-.alinear{
-    text-align: center;
+    float: left;
 }
 
 table {
@@ -17,7 +13,7 @@ table {
 }
 
 .column {
-    flex: 50%;
+    flex: 100%;
     padding: 20px;
 }
 
@@ -58,7 +54,7 @@ button {
 
 
 .example-sidenav {
-    padding: 20px;
+    padding: 20 px;
 }
 
 .example-card {
@@ -66,7 +62,8 @@ button {
 }
 
 mat-card img{
-    width: 50%;
+    width: 100%;
+    height: 100%;
 }
 
 .frame {
@@ -81,23 +78,4 @@ mat-card img{
 .img {
     width: 100%;
     height: 50%;
-}
-
-    .column[_ngcontent-miw-c171] {
-    flex: 50%;
-    padding: 20px;
-    margin-left: 6%;
-    margin-right: 0%;
-}   
-.column[_ngcontent-xig-c171] {
-    flex: 50%;
-    padding: 20px;
-    margin-right: 9%;
-    margin-left: 0%;
-}
-.column[_ngcontent-tej-c171] {
-    flex: 50%;
-    padding: 20px;
-    margin-right: 50%;
-    margin-left: 100%;
 }
