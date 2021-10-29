@@ -23,7 +23,6 @@ export class ErrorInterceptorService implements HttpInterceptor {
     private errorLog: ErrorLogService) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    console.log('Entró al interceptor');
 
     return next.handle(req).pipe(retry(environment.REINTENTOS)).pipe(tap(event => {
       if (event instanceof HttpResponse) {
@@ -32,9 +31,6 @@ export class ErrorInterceptorService implements HttpInterceptor {
         }
       }
     })).pipe(catchError((error) => {
-
-      console.log(error);
-
       
       this.loader.progressBarReactiva.next(true);
       const str = error.error.message;

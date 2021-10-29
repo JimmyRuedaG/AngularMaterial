@@ -12,7 +12,7 @@ export class ErrorLogService {
 
   constructor(private readonly http: HttpClient, private router: Router) { }
 
-  urlEncoded = '../../assets/errores.json';
+  urlEncoded = '../../assets/error.json';
 
   getText() {
     return this.http.get(this.urlEncoded, { responseType: 'text' });
