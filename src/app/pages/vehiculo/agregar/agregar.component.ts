@@ -42,10 +42,10 @@ export class AgregarComponent implements OnInit {
     const v: Vehiculo = new Vehiculo();
 
 
-    v.placa = `${this.form.value.placa}-${this.form.value.placanum}`;
-    v.marca = this.selectedValue2;
+    v.placa = this.form.value.placa;
+    v.marca = this.selectedValue;
     v.modelo = this.form.value.modelo;
-    v.tipoVehiuclo = this.selectedValue;
+    v.tipoVehiuclo = this.selectedValue2;
     v.capacidad = this.form.value.capacidad;
 
     if (this.form.valid) {
@@ -54,7 +54,6 @@ export class AgregarComponent implements OnInit {
         this.successMsg = 'Vehículo registrado';
         this.form.reset();
         this.openSnackBarSuccess();
-        this.updtList.listVehicles();
         this.router.navigate(['/vehiculo']);
       }, err => {
         console.log(err);
@@ -67,8 +66,7 @@ export class AgregarComponent implements OnInit {
   private buildForm(): void {
     this.form = this.formBuilder.group(
       {
-        placa: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(3)]],
-        placanum: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(3)]],
+        placa: ['', [Validators.required, Validators.minLength(7), Validators.maxLength(7)]],
         marca: ['', [Validators.required]],
         modelo: ['', [Validators.required, Validators.min(1970), Validators.max(2022)]],
         tipoVehiculo: ['', [Validators.required]],
@@ -78,21 +76,7 @@ export class AgregarComponent implements OnInit {
 
   }
 
-  public inputValidator(event: any): void {
-    const pattern = /^[a-zA-Z]*$/;
 
-    if (!pattern.test(event.target.value)) {
-      event.target.value = event.target.value.replace(/[^a-zA-Z]/g, '');
-    }
-  }
-
-  public inputValidatorNum(event: any): void {
-    const pattern = /^[0-9]*$/;
-
-    if (!pattern.test(event.target.value)) {
-      event.target.value = event.target.value.replace(/[^0-9]/g, '');
-    }
-  }
   openSnackBarSuccess(): void {
     this._snackBar.open(this.successMsg, 'Cerrar', {
       duration: 1000,
