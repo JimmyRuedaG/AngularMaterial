@@ -3,15 +3,18 @@
     <div class="row">
         <div class="column">
             <ng-container *ngIf="this.isLogged">
+
                 <mat-card class="example-card">
 
                     <mat-card-header>
                         <mat-card-title>Ver vehículos</mat-card-title>
                         <mat-card-subtitle>Ver la lista de vehículos registrados</mat-card-subtitle>
                     </mat-card-header>
+
                     <div class="center frame">
                         <img class="img" src="assets/carros.jpg">
                     </div>
+
                     <mat-card-content>
                         <p>
                             En esta sección podrá visualizar la lista de vehículos registrados hasta el momento
@@ -29,14 +32,18 @@
 
         <div class="column">
             <ng-container *ngIf="!this.isLogged">
+
                 <mat-card class="example-card">
+                
                     <mat-card-header>
                         <mat-card-title>Login</mat-card-title>
                         <mat-card-subtitle>Para acceder a todas las funciones</mat-card-subtitle>
                     </mat-card-header>
+                
                     <div class="center">
                         <img mat-card-image src="assets/login.png">
                     </div>
+                
                     <mat-card-content>
                         <p>
                             Inicie sesión para acceder a todos los espacios de esta app, encontraras:
@@ -44,30 +51,39 @@
                             y ciudades
                         </p>
                     </mat-card-content>
+                
                     <mat-card-actions class="center">
                         <button mat-raised-button routerLink="/login">Acceder</button>
                     </mat-card-actions>
+                
                 </mat-card>
             </ng-container>
         </div>
+        
         <div class="column">
             <ng-container *ngIf="this.isLogged">
+        
                 <mat-card class="example-card">
+        
                     <mat-card-header>
                         <mat-card-title>Ver departamentos</mat-card-title>
                         <mat-card-subtitle>Ver la lista de departamentos</mat-card-subtitle>
                     </mat-card-header>
+        
                     <div class="center">
                         <img mat-card-image src="assets/colombia.jpg">
                     </div>
+        
                     <mat-card-content>
                         <p>
                             En esta sección podrá visualizar la lista de departamentos y ciudades.
                         </p>
                     </mat-card-content>
+        
                     <mat-card-actions class="center">
                         <button mat-raised-button routerLink="/departamento">Acceder</button>
                     </mat-card-actions>
+        
                 </mat-card>
             </ng-container>
         </div>
