@@ -6,22 +6,22 @@
 
 
   <mat-toolbar color="primary" class="example-toolbar">
-  
+
     <button mat-icon-button (click)="drawer.toggle()">
       <mat-icon *ngIf="!drawer.opened">menu</mat-icon>
       <mat-icon *ngIf="drawer.opened">close</mat-icon>
     </button>
     <h1 class="example-app-name">ENVIOS UDEC</h1>
-  
-  
+
+
     <span class="example-spacer"></span>
-  
+
     <button mat-icon-button [matMenuTriggerFor]="menu">
       <mat-icon>more_vert</mat-icon>
     </button>
-  
+
     <mat-menu #menu="matMenu">
-      
+
       <ng-container *ngIf="this.isLogged">
         <button mat-menu-item routerLink="/buscar">
           <mat-icon>search</mat-icon>
@@ -40,7 +40,7 @@
         <mat-icon>home</mat-icon>
         <span>Página principal</span>
       </button>
-      
+
     </mat-menu>
   </mat-toolbar>
 
@@ -54,20 +54,20 @@
         </button>
         <mat-divider></mat-divider>
       </ng-container>
-  
+
       <ng-container *ngIf="this.isLogged">
 
         <button mat-menu-item (click)="logout()">
           <mat-icon>logout</mat-icon>
           <span>Cerrar sesión</span>
         </button>
-  
+
         <button mat-menu-item style="cursor: pointer" (click)="drawer.toggle()" [routerLink]="['/vehiculo']">
           <mat-icon>commute</mat-icon>
           <span>Vehiculo</span>
         </button>
         <mat-divider></mat-divider>
-  
+
         <button mat-menu-item style="cursor: pointer" (click)="drawer.toggle()" [routerLink]="['/departamento']">
           <mat-icon>share_location</mat-icon>
           <span>Departamento</span>
@@ -75,13 +75,13 @@
         <mat-divider></mat-divider>
       </ng-container>
     </mat-drawer>
-  
+
     <br>
-  
+
     <mat-drawer-content>
       <router-outlet></router-outlet>
     </mat-drawer-content>
-  
+
     <br>
-  
+
   </mat-drawer-container>
