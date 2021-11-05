@@ -19,15 +19,15 @@ export class LoginComponent implements OnInit {
   form: FormGroup;
 
 
-  
+
   constructor(public loadService: LoaderService, public loginService: LoginService,
-   
+
     private formBuilder: FormBuilder, private router: Router, private _snackBar: MatSnackBar) {
     this.buildForm();
   }
 
   ngOnInit(): void {
-    
+
   }
 
   login(event: Event): void {
@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
     if (this.form.valid) {
       this.loginService.login(this.form.value.username, this.form.value.password).subscribe(data => {
 
-      
+
         console.log(data);
 
         sessionStorage.setItem(environment.TOKEN, data.access_token);

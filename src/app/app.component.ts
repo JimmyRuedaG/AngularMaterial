@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
 
 
   constructor(public route: ActivatedRoute, private loader: BarraDeProgresoService,
-    private login: LoginService, private router: Router, private guardian: GuardianService, private _snackBar: MatSnackBar) {
+    public login: LoginService, private router: Router, private guardian: GuardianService, private _snackBar: MatSnackBar) {
     this.progresValue = 0;
     this.rangeArray = new Array(100);
   }
