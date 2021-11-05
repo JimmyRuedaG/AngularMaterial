@@ -20,8 +20,7 @@ export class AgregarComponent implements OnInit {
   public selectedValue: string;
   public selectedValue2: string;
 
-  horizontalPosition: MatSnackBarHorizontalPosition = 'start';
-  verticalPosition: MatSnackBarVerticalPosition = 'top';
+ 
 
   form: FormGroup;
 

@@ -11,10 +11,9 @@ export class IndexComponent implements OnInit {
 
   public isLogged: boolean;
 
-  constructor(public route: ActivatedRoute, private login: LoginService) { }
+  constructor(public route: ActivatedRoute, public login: LoginService) { }
 
   ngOnInit(): void {
-    this.isLogged = this.login.isLogged();
   }
 
 }

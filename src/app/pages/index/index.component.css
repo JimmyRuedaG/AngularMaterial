@@ -1,11 +1,14 @@
-
 .center{
     display: flex;
     justify-content: center;
 }
 
 .div-right{
-    float: left;
+    float: right;
+}
+
+.alinear{
+    text-align: center;
 }
 
 table {
@@ -13,7 +16,7 @@ table {
 }
 
 .column {
-    flex: 100%;
+    flex: 50%;
     padding: 20px;
 }
 
@@ -52,9 +55,8 @@ button {
     justify-content: center;
 }
 
-
 .example-sidenav {
-    padding: 20 px;
+    padding: 20px;
 }
 
 .example-card {
@@ -62,8 +64,7 @@ button {
 }
 
 mat-card img{
-    width: 100%;
-    height: 100%;
+    width: 50%;
 }
 
 .frame {
@@ -78,4 +79,9 @@ mat-card img{
 .img {
     width: 100%;
     height: 50%;
+}
+
+.example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
 }

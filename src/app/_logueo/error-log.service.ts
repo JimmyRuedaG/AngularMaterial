@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Error } from 'src/app/_model/error';
+import { Errores } from 'src/app/_model/errores';
 
 export interface ResultJson { }
 

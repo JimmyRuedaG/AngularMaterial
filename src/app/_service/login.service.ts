@@ -23,12 +23,12 @@ export class LoginService {
     });
   }
 
-  public logOut() {
+  public logOut(): void {
     const tk = sessionStorage.getItem(environment.TOKEN);
 
     this.http.get(`${environment.HOST}/cerrarSesion/anular/${tk}`).subscribe(data => {
       sessionStorage.clear();
-      this.router.navigate(['/']).then(() => { window.location.reload(); });
+      this.router.navigate(['/']);
     });
   }
 

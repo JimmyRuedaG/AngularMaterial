@@ -23,8 +23,6 @@ export class EditarVehiculoComponent implements OnInit {
 
   public selectedValue2: string;
 
-  horizontalPosition: MatSnackBarHorizontalPosition = 'start';
-  verticalPosition: MatSnackBarVerticalPosition = 'top';
 
   form: FormGroup;
 
@@ -103,16 +101,16 @@ export class EditarVehiculoComponent implements OnInit {
   openSnackBar(): void {
     this._snackBar.open(this.error, 'Cerrar', {
       duration: 10000,
-      horizontalPosition: this.horizontalPosition,
-      verticalPosition: this.verticalPosition,
+      horizontalPosition: 'start',
+      verticalPosition: 'top',
     });
   }
 
   openSnackBarSuccess(): void {
     this._snackBar.open(this.successMsg, 'Cerrar', {
       duration: 10000,
-      horizontalPosition: this.horizontalPosition,
-      verticalPosition: this.verticalPosition,
+      horizontalPosition: 'center',
+      verticalPosition: 'top',
     });
   }
 }

@@ -1,8 +1,9 @@
 import { Component, HostListener, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BarraDeProgresoService } from './_service/barra-de-progreso.service';
-
 import { LoginService } from './_service/login.service';
+import { GuardianService } from './_share/guardian.service';
 
 @Component({
   selector: 'app-root',
@@ -16,8 +17,9 @@ export class AppComponent implements OnInit {
 
   public isLogged: boolean;
 
+
   constructor(public route: ActivatedRoute, private loader: BarraDeProgresoService,
-    private login: LoginService, private router: Router) {
+    private login: LoginService, private router: Router, private guardian: GuardianService, private _snackBar: MatSnackBar) {
     this.progresValue = 0;
     this.rangeArray = new Array(100);
   }
@@ -54,7 +56,21 @@ export class AppComponent implements OnInit {
 
   logout(): void {
     this.login.logOut();
+    this.openSnackBar('Sesion cerrada');
+    this.guardian.setTimeout();
   }
 
-}
+  @HostListener('window:mousemove') refreshUserState():void{
+    clearTimeout(this.guardian.userActivity);
+    this.guardian.setTimeout();
+  }
 
+
+  openSnackBar(error: string): void {
+    this._snackBar.open(error, 'Cerrar', {
+      duration: 10000,
+      horizontalPosition: 'center',
+      verticalPosition: 'top',
+    });
+  }
+}
