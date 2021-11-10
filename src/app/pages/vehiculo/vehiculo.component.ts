@@ -1,12 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { VehicleInfo, VehiculoService } from '../../_service/vehiculo.service';
+import { VehiculoService } from '../../_service/vehiculo.service';
 import { Vehiculo } from 'src/app/_model/vehiculo';
 import { ActivatedRoute } from '@angular/router';
-import { LoaderService } from '../../loader/loader.service';
 import { MatTableDataSource } from '@angular/material/table';
-import { MatPaginator, PageEvent } from '@angular/material/paginator';
-import { map, tap } from 'rxjs/operators';
-import { MatSort, Sort } from '@angular/material/sort';
+import { MatSort } from '@angular/material/sort';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { BarraDeProgresoService } from 'src/app/_service/barra-de-progreso.service';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-vehiculo',
@@ -15,54 +15,61 @@ import { MatSort, Sort } from '@angular/material/sort';
 })
 export class VehiculoComponent implements OnInit {
 
-  pageEvent: PageEvent;
   displayedColumns: string[] = ['placa', 'modelo', 'marca', 'tipoVehiuclo', 'capacidad', 'accion'];
-  columnsToDisplay: string[] = this.displayedColumns.slice();
-  dataSource: VehicleInfo = null;
-  vehicleList = new MatTableDataSource<Vehiculo>([]);
+  dataSource = new MatTableDataSource<Vehiculo>();
 
-  public page = 0;
-  public size = 3;
-
-  showId = false;
-
-  @ViewChild('vehiclePaginator') categoryPaginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private VehService: VehiculoService, public route: ActivatedRoute, public loader: LoaderService) {
-  }
+  pageSize: number = 5;
+  length: number = 10;
+  pageIndex = 0;
+
+  constructor(private vehiculoService: VehiculoService,
+    private _snackBar: MatSnackBar, public route: ActivatedRoute, private barra: BarraDeProgresoService) { }
 
   ngOnInit(): void {
-    this.loadVehicleInfo();
+    this.listar();
   }
 
-  private loadVehicleInfo() {
-    this.VehService.getVehPag(0, 3).pipe(
-      tap(data => console.log(data)),
-      map((vehInfo: VehicleInfo) => this.dataSource = vehInfo)
-    ).subscribe(data => {
-      this.vehicleList = new MatTableDataSource(data.content);
-      this.vehicleList.sort = this.sort;
+  listar() {
+    this.barra.progressBarReactiva.next(false);
+
+    this.vehiculoService.listar(0, 5).subscribe(data => {
+      this.dataSource = new MatTableDataSource(data.content);
+      this.dataSource.sort = this.sort;
+      this.barra.progressBarReactiva.next(true);
+      this.length = data.totalElements;
     });
   }
 
-  public onPaginateChange(event: PageEvent): void {
-    this.page = event.pageIndex;
-    this.size = event.pageSize;
+  onPaginateChange(event: PageEvent) {
+    this.pageSize = event.pageSize;
+    this.pageIndex = event.pageIndex;
 
-    this.listVehicles();
+    this.llamarListar();
+
   }
 
-  public listVehicles(): void {
-    this.VehService.getVehPag(this.page, this.size).pipe(
-      map((vehInfo: VehicleInfo) => this.dataSource = vehInfo)
-    ).subscribe(data => {
-      this.vehicleList = new MatTableDataSource(data.content);
-      this.vehicleList.sort = this.sort;
+  public llamarListar() {
+    this.vehiculoService.listar(this.pageIndex, this.pageSize).subscribe(data => {
+      this.dataSource = new MatTableDataSource(data.content);
+      this.dataSource.sort = this.sort;
     });
   }
 
-  public doFilter = (value: string) => {
-    this.vehicleList.filter = value.trim().toLocaleLowerCase();
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 1000,
+      horizontalPosition: "center",
+      verticalPosition: "top"
+    });
+  }
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
   }
 }

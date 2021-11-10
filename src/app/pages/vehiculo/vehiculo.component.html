@@ -1,49 +1,44 @@
-<div *ngIf="loader.isLoading | async" class="loader-container">
-    <mat-progress-bar color="primary" mode="indeterminate"></mat-progress-bar>
-</div>
-
-
-
 <div [hidden]="route.children.length !== 0">
-    
-        <h2 class="center">Ver lista de vehículos</h2>
-    
-    
-    <div fxLayout fxLayoutAlign="center center">
-        <mat-form-field fxFlex="40%">
-            <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Filter">
-        </mat-form-field>
-    </div>
 
-    <table mat-table class="mat-elevation-z8" [dataSource]="vehicleList" matSort [hidden]="route.children.length !== 0">
+    <h2 class="center">Ver lista de vehículos</h2>
+
+    <mat-divider></mat-divider>
+
+
+
+    <mat-form-field fxFlex="40%">
+        <input matInput (keyup)="applyFilter($event)" #input placeholder="Filtro">
+    </mat-form-field>
+
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
 
         <ng-container matColumnDef="placa">
-            <th id="placa" mat-header-cell *matHeaderCellDef mat-sort-header>Placa</th>
-            <td mat-cell *matCellDef="let element">{{element.placa}}</td>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Placa </th>
+            <td mat-cell *matCellDef="let element">{{element.placa}} </td>
         </ng-container>
 
         <ng-container matColumnDef="modelo">
-            <th id="modelo" mat-header-cell *matHeaderCellDef mat-sort-header>Modelo</th>
-            <td mat-cell *matCellDef="let element">{{element.modelo}}</td>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Modelo </th>
+            <td mat-cell *matCellDef="let element"> {{element.modelo}} </td>
         </ng-container>
 
         <ng-container matColumnDef="marca">
-            <th id="marca" mat-header-cell *matHeaderCellDef mat-sort-header>Marca</th>
-            <td mat-cell *matCellDef="let element">{{element.marca}}</td>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Marca </th>
+            <td mat-cell *matCellDef="let element"> {{element.marca}} </td>
         </ng-container>
 
         <ng-container matColumnDef="tipoVehiuclo">
-            <th id="tipoVehiuclo" mat-header-cell *matHeaderCellDef mat-sort-header>Tipo de Vehículo</th>
-            <td mat-cell *matCellDef="let element">{{element.tipoVehiuclo}}</td>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Tipo vehiculo </th>
+            <td mat-cell *matCellDef="let element"> {{element.tipoVehiuclo}} </td>
         </ng-container>
 
         <ng-container matColumnDef="capacidad">
-            <th id="capacidad" mat-header-cell *matHeaderCellDef mat-sort-header>Capacidad</th>
-            <td mat-cell *matCellDef="let element">{{element.capacidad}}</td>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Capacidad </th>
+            <td mat-cell *matCellDef="let element"> {{element.capacidad}} </td>
         </ng-container>
 
         <ng-container matColumnDef="accion">
-            <th id="accion" mat-header-cell *matHeaderCellDef>Acción</th>
+            <th mat-header-cell *matHeaderCellDef>Acción</th>
             <td mat-cell *matCellDef="let element">
                 <button mat-icon-button [routerLink]="['/vehiculo/editar-vehiculo',element.idVehiculo]">
                     <mat-icon>car_rental</mat-icon>
@@ -51,20 +46,30 @@
             </td>
         </ng-container>
 
+
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+        </tr>
+
     </table>
-    <mat-paginator [length]="dataSource.totalElements" [pageSizeOptions]="[3, 5, 10, 25]"
+
+    <mat-paginator [pageSize]="pageSize" [length]="length" [pageSizeOptions]="[5,10]"
         (page)="onPaginateChange($event)" showFirstLastButtons>
     </mat-paginator>
+
+
 </div>
+
 
 <router-outlet></router-outlet>
 
-<div class="column" [hidden]="route.children.length !== 0">
+<div id="agregar" [hidden]="route.children.length !== 0">
     <div style="text-align: center;">
-        <button mat-icon-button routerLink="/vehiculo/agregar">
+        <button mat-icon-button [routerLink]="['agregar']">
             <mat-icon>emoji_transportation</mat-icon>
             <span>Registrar vehiculo</span>
         </button>
     </div>
+</div>

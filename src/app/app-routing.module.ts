@@ -22,6 +22,7 @@ const routes: Routes = [
   { path: 'registro', component: RegistroComponent },
   { path: 'buscar', component: BuscarComponent },
   { path: 'inicio', component: AppComponent },
+  { path: 'usuario', component: UsuarioComponent },
   {
     path: 'departamento', component: DepartamentoComponent, canActivate: [GuardianService], children:
       [

@@ -1,1 +1,106 @@
-<p>usuario works!</p>
+<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+
+    <ng-container matColumnDef="nombre">    
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
+        <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="apellido">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> apellido </th>
+        <td mat-cell *matCellDef="let element"> {{element.apellido}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="nick">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> nick </th>
+        <td mat-cell *matCellDef="let element"> {{element.nick}} </td>
+    </ng-container>
+
+    <!-- <ng-container matColumnDef="idTipoDocumento">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> idTipoDocumento </th>
+        <td mat-cell *matCellDef="let element"> {{element.idTipoDocumento.nombre}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="documento">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> documento </th>
+        <td mat-cell *matCellDef="let element"> {{element.documento}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="direccion">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> direccion </th>
+        <td mat-cell *matCellDef="let element"> {{element.direccion}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="correo">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> correo </th>
+        <td mat-cell *matCellDef="let element"> {{element.correo}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="celular">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> celular </th>
+        <td mat-cell *matCellDef="let element"> {{element.celular}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="celularAux">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> celularAux </th>
+        <td mat-cell *matCellDef="let element"> {{element.celularAux}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="correo">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> correo </th>
+        <td mat-cell *matCellDef="let element"> {{element.correo}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Ciudad">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Ciudad </th>
+        <td mat-cell *matCellDef="let element"> {{element.Ciudad.nombre}} </td>
+    </ng-container> -->
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    
+    <tr class="mat-row" *matNoDataRow>
+    
+        <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+    
+    </tr>
+    
+    
+    
+</table>
+
+
+
+
+<!-- <div *ngIf="loader.isLoading | async" class="loader-container">
+    <mat-progress-bar color="primary" mode="indeterminate"></mat-progress-bar>
+</div>
+
+
+
+<div>
+
+    <h2 class="center">Ver lista de usuarios</h2>
+
+
+    <table mat-table class="mat-elevation-z8" [dataSource]="dataSource">
+
+        <ng-container matColumnDef="nombre">
+        
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
+        
+            <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+        
+        </ng-container>
+
+        
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  
+</div>
+
+<router-outlet></router-outlet>
+ -->
