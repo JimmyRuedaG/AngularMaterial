@@ -24,6 +24,9 @@ import { UnauthorizedComponent } from './pages/unauthorized/unauthorized.compone
 import { environment } from 'src/environments/environment';
 import { JwtModule } from '@auth0/angular-jwt';
 import { UsuarioComponent } from './pages/usuario/usuario.component';
+import { ConductorComponent } from './pages/conductor/conductor.component';
+import { EditarUsuarioComponent } from './pages/usuario/editar-usuario/editar-usuario.component';
+import { RegistrarusuarioComponent } from './pages/usuario/registrarusuario/registrarusuario.component';
 
 
 export function tokenGetter(): any {
@@ -47,6 +50,9 @@ export function tokenGetter(): any {
     Error500Component,
     UnauthorizedComponent,
     UsuarioComponent,
+    ConductorComponent,
+    EditarUsuarioComponent,
+    RegistrarusuarioComponent,
   ],
   imports: [
     BrowserModule,

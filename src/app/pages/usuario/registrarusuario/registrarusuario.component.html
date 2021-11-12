@@ -1,0 +1,200 @@
+<h2 class="center">Registrar usuario</h2>
+<div *ngIf="loadService.isLoading | async" class="loader-container">
+    <mat-progress-bar color="primary" mode="indeterminate"></mat-progress-bar>
+</div>
+
+<div>
+    <mat-card class="example-card">
+        <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>Agregar usuario</mat-card-title>
+            <mat-card-subtitle>Ingresar datos del nuevo usuario</mat-card-subtitle>
+        </mat-card-header>
+
+        <form [formGroup]="form" (ngSubmit)="insertUser($event)">
+            <mat-form-field appearance="fill">
+                <mat-label>Documento</mat-label>
+                <input matInput placeholder="Ej:1017102108" formControlName="documento"
+                    (input)="inputValidatorDoc($event)">
+            </mat-form-field>
+            <div *ngIf="form.get('documento').errors && form.get('documento').touched">
+                <mat-error *ngIf="form.get('documento').hasError('required')">
+                    Es un campo requerido
+                </mat-error>
+                <mat-error *ngIf="form.get('documento').hasError('minlength')">
+                    El documento no cumple con la cantidad de dígitos mínimos
+                </mat-error>
+                <mat-error *ngIf="form.get('documento').hasError('maxlength')">
+                    El documento excede la cantidad de dígitos aceptados
+                </mat-error>
+            </div>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Nombre</mat-label>
+                <input matInput placeholder="Ej:Pepe" formControlName="nombre" (input)="inputValidator($event)">
+            </mat-form-field>
+            <div *ngIf="form.get('nombre').errors && form.get('nombre').touched">
+                <mat-error *ngIf="form.get('nombre').hasError('required')">
+                    Es un campo requerido
+                </mat-error>
+                <mat-error *ngIf="form.get('nombre').hasError('minlength')">
+                    La longitud del nombre es muy corta
+                </mat-error>
+                <mat-error *ngIf="form.get('nombre').hasError('maxlength')">
+                    La longitud del nombre es muy extensa
+                </mat-error>
+            </div>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Apellido</mat-label>
+                <input matInput placeholder="Ej:Grillo" formControlName="apellido" (input)="inputValidator($event)">
+            </mat-form-field>
+            <div *ngIf="form.get('apellido').errors && form.get('apellido').touched">
+                <mat-error *ngIf="form.get('apellido').hasError('required')">
+                    Es un campo requerido
+                </mat-error>
+                <mat-error *ngIf="form.get('apellido').hasError('minlength')">
+                    La longitud del nombre es muy corta
+                </mat-error>
+                <mat-error *ngIf="form.get('apellido').hasError('maxlength')">
+                    La longitud del nombre es muy extensa
+                </mat-error>
+            </div>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Nickname</mat-label>
+                <input matInput placeholder="Ej:PepeTheOG_92" formControlName="nick">
+            </mat-form-field>
+            <div *ngIf="form.get('nick').errors && form.get('nick').touched">
+                <mat-error *ngIf="form.get('nick').hasError('required')">
+                    Es un campo requerido
+                </mat-error>
+                <mat-error *ngIf="form.get('nick').hasError('minlength')">
+                    La longitud del nickname es muy corta
+                </mat-error>
+                <mat-error *ngIf="form.get('nick').hasError('maxlength')">
+                    La longitud del nickname es muy extensa
+                </mat-error>
+            </div>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Clave</mat-label>
+                <input matInput type="password" formControlName="clave">
+            </mat-form-field>
+            <div *ngIf="form.get('clave').errors && form.get('clave').touched">
+                <mat-error *ngIf="form.get('clave').hasError('required')">
+                    Es un campo requerido
+                </mat-error>
+            </div>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Dirección</mat-label>
+                <input matInput placeholder="Ej:Carrera 6#12 - 20" formControlName="direccion">
+            </mat-form-field>
+            <div *ngIf="form.get('direccion').errors && form.get('direccion').touched">
+                <mat-error *ngIf="form.get('direccion').hasError('required')">
+                    Es un campo requerido
+                </mat-error>
+                <mat-error *ngIf="form.get('direccion').hasError('minlength')">
+                    La longitud del nickname es muy corta
+                </mat-error>
+                <mat-error *ngIf="form.get('direccion').hasError('maxlength')">
+                    La longitud del nickname es muy extensa
+                </mat-error>
+            </div>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Celular</mat-label>
+                <input matInput placeholder="Ej:3102342332" formControlName="celular"
+                    (input)="inputValidatorDoc($event)">
+            </mat-form-field>
+            <div *ngIf="form.get('celular').errors && form.get('celular').touched">
+                <mat-error *ngIf="form.get('celular').hasError('required')">
+                    Es un campo requerido
+                </mat-error>
+                <mat-error *ngIf="form.get('celular').hasError('minlength')">
+                    La longitud del nickname es muy corta
+                </mat-error>
+                <mat-error *ngIf="form.get('celular').hasError('maxlength')">
+                    La longitud del nickname es muy extensa
+                </mat-error>
+            </div>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Celular auxiliar - opcional</mat-label>
+                <input matInput placeholder="Ej:3102342332" formControlName="celularAux"
+                    (input)="inputValidatorDoc($event)">
+            </mat-form-field>
+            <div *ngIf="form.get('celularAux').errors && form.get('celularAux').touched">
+                <mat-error *ngIf="form.get('celularAux').hasError('minlength')">
+                    La longitud del nickname es muy corta
+                </mat-error>
+                <mat-error *ngIf="form.get('celularAux').hasError('maxlength')">
+                    La longitud del nickname es muy extensa
+                </mat-error>
+            </div>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Correo</mat-label>
+                <input matInput placeholder="Ej:pep@gmail.com" formControlName="correo">
+            </mat-form-field>
+            <div *ngIf="form.get('correo').errors && form.get('correo').touched">
+                <mat-error *ngIf="form.get('correo').hasError('required')">
+                    Es un campo requerido
+                </mat-error>
+                <mat-error *ngIf="form.get('correo').hasError('minlength')">
+                    La longitud del nickname es muy corta
+                </mat-error>
+                <mat-error *ngIf="form.get('correo').hasError('maxlength')">
+                    La longitud del nickname es muy extensa
+                </mat-error>
+            </div>
+
+            <table class="example-full-width" cellspacing="0">
+                <tr>
+                    <td>
+                        <mat-form-field>
+                            <mat-label>Departamento</mat-label>
+                            <mat-select [(value)]="deptSelected" formControlName="departamento"
+                                (selectionChange)="loadCities($event.value)">
+                                <mat-option [value]="dept.idDepartamento" *ngFor="let dept of this.deptList">
+                                    {{dept.idDepartamento}}. {{dept.nombre}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <div *ngIf="form.get('departamento').errors && form.get('departamento').touched">
+                            <mat-error *ngIf="form.get('departamento').hasError('required')">
+                                Debe elegir un departamento
+                            </mat-error>
+                        </div>
+                    </td>
+
+                    <td>
+                        <mat-form-field>
+                            <mat-label>Ciudad</mat-label>
+                            <mat-select [(value)]="citySelected" formControlName="ciudad">
+                                <mat-option [value]="city.idCiudad" *ngFor="let city of this.cityList">
+                                    {{city.idCiudad}}. {{city.nombre}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <div *ngIf="form.get('ciudad').errors && form.get('ciudad').touched">
+                            <mat-error *ngIf="form.get('ciudad').hasError('required')">
+                                Debe elegir una ciudad
+                            </mat-error>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <mat-card-actions>
+                <button mat-icon-button type="submit">
+                    <mat-icon>save</mat-icon>
+                    <span>Registrar</span>
+                </button>
+                <button mat-raised-button routerLink="/usuario">Volver</button>
+            </mat-card-actions>
+
+
+        </form>
+    </mat-card>
+</div>

@@ -1,3 +1,6 @@
+import { ConductorComponent } from 'src/app/pages/conductor/conductor.component';
+import { EditarUsuarioComponent } from './pages/usuario/editar-usuario/editar-usuario.component';
+import { RegistrarusuarioComponent } from './pages/usuario/registrarusuario/registrarusuario.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
@@ -19,6 +22,7 @@ import { GuardianService } from 'src/app/_share/guardian.service';
 const routes: Routes = [
   { path: '', component: IndexComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'conductor', component: ConductorComponent },
   { path: 'registro', component: RegistroComponent },
   { path: 'buscar', component: BuscarComponent },
   { path: 'inicio', component: AppComponent },
@@ -33,8 +37,14 @@ const routes: Routes = [
     path: 'vehiculo', component: VehiculoComponent, canActivate: [GuardianService], children:
       [
         { path: 'agregar', component: AgregarComponent, canActivate: [GuardianService] },
-        { path: 'editar-vehiculo/:idVehiculo', component: EditarVehiculoComponent, canActivate: [GuardianService] }
+        { path: 'editar-vehiculo/:idVehiculo', component: EditarVehiculoComponent, canActivate: [GuardianService] },
       ]
+  },
+  { path: 'usuario', component: UsuarioComponent, canActivate: [GuardianService], children:
+    [
+      { path: 'registrarusuario', component: RegistrarusuarioComponent, canActivate: [GuardianService]},
+      { path: 'editarusuario/:idUsuario', component: EditarUsuarioComponent, canActivate: [GuardianService]}
+    ]
   },
   { path: 'unauthorized', component: UnauthorizedComponent },
   { path: 'error500', component: Error500Component },

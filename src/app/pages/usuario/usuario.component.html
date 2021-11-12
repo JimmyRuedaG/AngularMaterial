@@ -1,106 +1,89 @@
-<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
-
-
-    <ng-container matColumnDef="nombre">    
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
-        <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="apellido">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> apellido </th>
-        <td mat-cell *matCellDef="let element"> {{element.apellido}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="nick">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> nick </th>
-        <td mat-cell *matCellDef="let element"> {{element.nick}} </td>
-    </ng-container>
-
-    <!-- <ng-container matColumnDef="idTipoDocumento">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> idTipoDocumento </th>
-        <td mat-cell *matCellDef="let element"> {{element.idTipoDocumento.nombre}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="documento">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> documento </th>
-        <td mat-cell *matCellDef="let element"> {{element.documento}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="direccion">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> direccion </th>
-        <td mat-cell *matCellDef="let element"> {{element.direccion}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="correo">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> correo </th>
-        <td mat-cell *matCellDef="let element"> {{element.correo}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="celular">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> celular </th>
-        <td mat-cell *matCellDef="let element"> {{element.celular}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="celularAux">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> celularAux </th>
-        <td mat-cell *matCellDef="let element"> {{element.celularAux}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="correo">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> correo </th>
-        <td mat-cell *matCellDef="let element"> {{element.correo}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="Ciudad">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Ciudad </th>
-        <td mat-cell *matCellDef="let element"> {{element.Ciudad.nombre}} </td>
-    </ng-container> -->
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    
-    <tr class="mat-row" *matNoDataRow>
-    
-        <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
-    
-    </tr>
-    
-    
-    
-</table>
-
-
-
-
-<!-- <div *ngIf="loader.isLoading | async" class="loader-container">
+<div *ngIf="loader.isLoading | async" class="loader-container">
     <mat-progress-bar color="primary" mode="indeterminate"></mat-progress-bar>
 </div>
 
 
 
-<div>
+<div [hidden]="route.children.length !== 0">
+    <div fxLayout fxLayoutAlign="center center">
+        <mat-form-field fxFlex="40%">
+            <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Filter">
+        </mat-form-field>
+    </div>
 
-    <h2 class="center">Ver lista de usuarios</h2>
-
-
-    <table mat-table class="mat-elevation-z8" [dataSource]="dataSource">
-
+    <table mat-table class="mat-elevation-z8" [dataSource]="userList" matSort>
         <ng-container matColumnDef="nombre">
-        
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
-        
-            <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
-        
+            <th id="nombre" mat-header-cell *matHeaderCellDef mat-sort-header>Nombre</th>
+            <td mat-cell *matCellDef="let element">{{element.nombre}}</td>
         </ng-container>
 
-        
+        <ng-container matColumnDef="apellido">
+            <th id="apellido" mat-header-cell *matHeaderCellDef mat-sort-header>Apellido</th>
+            <td mat-cell *matCellDef="let element">{{element.apellido}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="nick">
+            <th id="nick" mat-header-cell *matHeaderCellDef mat-sort-header>Nick</th>
+            <td mat-cell *matCellDef="let element">{{element.nick}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="documento">
+            <th id="documento" mat-header-cell *matHeaderCellDef mat-sort-header>Documento</th>
+            <td mat-cell *matCellDef="let element">{{element.documento}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="correo">
+            <th id="correo" mat-header-cell *matHeaderCellDef mat-sort-header>Correo</th>
+            <td mat-cell *matCellDef="let element">{{element.correo}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="rol">
+            <th id="rol" mat-header-cell *matHeaderCellDef mat-sort-header>Rol</th>
+            <td mat-cell *matCellDef="let element">{{element.rol.nombre}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="ciudad">
+            <th id="ciudad" mat-header-cell *matHeaderCellDef mat-sort-header>Departamento</th>
+            <td mat-cell *matCellDef="let element">{{element.ciudad.departamento.nombre}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="ciudad2">
+            <th id="ciudad2" mat-header-cell *matHeaderCellDef mat-sort-header>Ciudad</th>
+            <td mat-cell *matCellDef="let element">{{element.ciudad.nombre}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="acciones">
+            <th id="acciones" mat-header-cell *matHeaderCellDef mat-sort-header>Acciones</th>
+            <td mat-cell *matCellDef="let element">
+                <div class="row">
+                    <button mat-icon-button [routerLink]="['/usuario/editarusuario', element.idUsuario]">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                    <button mat-icon-button (click)="deleteUser(element.idUsuario)">
+                        <mat-icon>person_remove</mat-icon>
+                    </button>
+                </div>
+            </td>
+        </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
-  
+
+    <mat-paginator [length]="dataSource.totalElements"
+                    [pageSizeOptions]="[3, 5, 10, 25]"
+                    (page)="onPaginateChange($event)"
+                    showFirstLastButtons>
+    </mat-paginator>
 </div>
 
-<router-outlet></router-outlet>
- -->
+<div class="column" [hidden]="route.children.length !== 0">
+    <div style="text-align: center;">
+        <button mat-icon-button routerLink="/usuario/registrarusuario"> 
+            <mat-icon>person_add</mat-icon>
+            <span>Registrar usuario</span>
+        </button>
+    </div>
+</div>
+
+        <router-outlet></router-outlet>

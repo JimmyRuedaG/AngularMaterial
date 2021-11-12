@@ -1,11 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { BarraDeProgresoService } from 'src/app/_service/barra-de-progreso.service';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Vehiculo } from 'src/app/_model/vehiculo';
 import { VehiculoService } from 'src/app/_service/vehiculo.service';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { LoaderService } from 'src/app/loader/loader.service';
+import { FormGroup, FormBuilder, FormControl, Validator, Validators } from '@angular/forms';
+import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { ErrorInterceptorService } from 'src/app/_share/error-interceptor.service';
 import { VehiculoComponent } from '../vehiculo.component';
-import { BarraDeProgresoService } from 'src/app/_service/barra-de-progreso.service';
 
 @Component({
   selector: 'app-agregar',
@@ -14,78 +16,90 @@ import { BarraDeProgresoService } from 'src/app/_service/barra-de-progreso.servi
 })
 export class AgregarComponent implements OnInit {
 
+
+  public successMsg: any;
+
   public selectedValue: string;
+
   public selectedValue2: string;
+
+  horizontalPosition: MatSnackBarHorizontalPosition = 'start';
+  verticalPosition: MatSnackBarVerticalPosition = 'top';
 
   form: FormGroup;
 
-
-  constructor(private formBuilder: FormBuilder, private vehiculoService: VehiculoService,
-    private _snackBar: MatSnackBar, private router: Router, private barra: BarraDeProgresoService,
-    private vehiculoListar: VehiculoComponent) {
+  constructor(private VehService: VehiculoService, public loadService: LoaderService,
+              private formBuilder: FormBuilder, private _snackBar: MatSnackBar, private router: Router,
+              public errorInterceptor: ErrorInterceptorService, private updtList: VehiculoComponent) {
     this.buildForm();
   }
- 
+
   ngOnInit(): void {
   }
 
-  private buildForm() {
-    this.barra.progressBarReactiva.next(false);
-    this.form = this.formBuilder.group({
-      placa: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(3)]],
-      placanum: ['', [Validators.required, Validators.maxLength(3), Validators.minLength(3)]],
-      modelo: ['', [Validators.required, Validators.min(1970), Validators.max(2022)]],
-      marca: ['', [Validators.required]],
-      tipoVehiuclo: ['', [Validators.required]],
-      capacidad: ['', [Validators.required, Validators.maxLength(6), Validators.minLength(3)]],
-
-    });
-    this.barra.progressBarReactiva.next(true);
-  }
-
-  save(event: Event) {
+  insertVehiculo(event: Event): void{
 
     event.preventDefault();
-    
-    
 
-    if (this.form.valid) {
-      const value = this.form.value;
+    const v: Vehiculo = new Vehiculo();
 
-      let placa = `${value.placa}-${value.placanum}`;
+    v.placa = `${this.form.value.placa}-${this.form.value.placanum}`;
+    v.marca = this.selectedValue2;
+    v.modelo = this.form.value.modelo;
+    v.tipoVehiuclo = this.selectedValue;
+    v.capacidad = this.form.value.capacidad;
 
-      let capacidad = `${value.capacidad}Kg`;
-
-      const v: Vehiculo = new Vehiculo();
-
-      v.placa = placa;
-      v.marca = this.selectedValue;
-      v.modelo = this.form.value.modelo;
-      v.tipoVehiuclo = this.selectedValue2;
-      v.capacidad = capacidad;
-
-      this.vehiculoService.guardar(v).subscribe(data => {
-        this.openSnackBar("Vehiculo registrado", "cerrar");
-        this.vehiculoListar.llamarListar();
+    if (this.form.valid)
+    {
+      this.VehService.guardar(v).subscribe(success => {
+        console.log(success);
+        this.successMsg = 'Vehículo registrado';
+        this.form.reset();
+        this.openSnackBarSuccess();
+        this.updtList.listVehicles();
         this.router.navigate(['/vehiculo']);
-      }, error => {
-        console.log("Vehiculo no se guardo " + error)
-        if (error.error.status == 400) {
-        }
-
+      }, err => {
+        console.log(err);
       });
-
-    } else {
+    }else{
       this.form.markAllAsTouched();
     }
+  }
+
+  private buildForm(): void{
+    this.form = this.formBuilder.group(
+      {
+        placa: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(3)]],
+        placanum: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(3)]],
+        marca: ['', [Validators.required]],
+        modelo: ['', [Validators.required, Validators.min(1970), Validators.max(2022)]],
+        tipoVehiculo: ['', [Validators.required]],
+        capacidad: ['', [Validators.required]],
+      });
 
   }
 
-  openSnackBar(message: string, action: string) {
-    this._snackBar.open(message, action, {
-      duration: 1000,
+  public inputValidator(event: any): void {
+    const pattern = /^[a-zA-Z]*$/;
+
+    if (!pattern.test(event.target.value)) {
+      event.target.value = event.target.value.replace(/[^a-zA-Z]/g, '');
+    }
+  }
+
+  public inputValidatorNum(event: any): void {
+    const pattern = /^[0-9]*$/;
+
+    if (!pattern.test(event.target.value)) {
+      event.target.value = event.target.value.replace(/[^0-9]/g, '');
+    }
+  }
+
+  openSnackBarSuccess(): void {
+    this._snackBar.open(this.successMsg, 'Cerrar', {
+      duration: 10000,
       horizontalPosition: "center",
-      verticalPosition: "top"
+      verticalPosition: "top",
     });
   }
 }

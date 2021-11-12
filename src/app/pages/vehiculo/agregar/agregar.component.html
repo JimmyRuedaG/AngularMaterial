@@ -1,3 +1,8 @@
+<div *ngIf="loadService.isLoading | async" class="loader-container">
+    <mat-progress-bar color="primary" mode="indeterminate"></mat-progress-bar>
+</div>
+
+
 <div>
     <mat-card class="example-card">
         <mat-card-header>
@@ -6,72 +11,59 @@
             <mat-card-subtitle>Ingresar datos del vehiculo</mat-card-subtitle>
         </mat-card-header>
 
-        <form class="example-form" [formGroup]="form" (ngSubmit)="save($event)">
+        <form [formGroup]="form" (ngSubmit)="insertVehiculo($event)">
+            <table class="example-full-width" cellspacing="0">
+                <tr>
+                    <td>
+                        <mat-form-field class="example-full-width" style="width: 180px;">
+                            <mat-label>Placa</mat-label>
+                            <input matInput placeholder="ABC" formControlName="placa" (input)="inputValidator($event)">
+                        </mat-form-field>
+                        <div *ngIf="form.get('placa').errors && form.get('placa').touched">
+                            <mat-error *ngIf="form.get('placa').hasError('required')">
+                                Es un campo requerido
+                            </mat-error>
+                            <mat-error *ngIf="form.get('placa').hasError('maxlength')">
+                                Campo supera el número de caracteres
+                            </mat-error>
+                            <mat-error *ngIf="form.get('placa').hasError('minlength')">
+                                Campo es inferior al número de caracteres
+                            </mat-error>
+                        </div>
+                    </td>
+                    <td>
+                        <label style="margin: 5px;">-</label>
+                    </td>
+                    <td>
+                        <mat-form-field class="example-full-width" style="width: 180px;">
+                            <mat-label>Placa</mat-label>
+                            <input type="text" matInput placeholder="222" formControlName="placanum"
+                                (input)="inputValidatorNum($event)">
+                        </mat-form-field>
+                        <div *ngIf="form.get('placanum').errors && form.get('placanum').touched">
+                            <mat-error *ngIf="form.get('placanum').hasError('required')">
+                                Es un campo requerido
+                            </mat-error>
+                            <mat-error *ngIf="form.get('placanum').hasError('maxlength')">
+                                Campo supera el número de caracteres
+                            </mat-error>
+                            <mat-error *ngIf="form.get('placanum').hasError('minlength')">
+                                Campo es inferior al número de caracteres
+                            </mat-error>
+                        </div>
+                    </td>
+                </tr>
+            </table>
 
+         
 
-            <mat-form-field appearance="outline">
-                <mat-label>Letras de la placa</mat-label>
-                <input matInput type="text" placeholder="ABC" formControlName="placa">
-                <mat-icon matSuffix>style</mat-icon>
-            </mat-form-field>
-
-            <div *ngIf="form.get('placa').errors && form.get('placa').touched">
-                <mat-label *ngIf="form.get('placa').hasError('required')">
-                    Es un campo requerido
-                </mat-label>
-                <mat-label *ngIf="form.get('placa').hasError('maxlength')">
-                    Campo supera el número de caracteres
-                </mat-label>
-                <mat-label *ngIf="form.get('placa').hasError('minlength')">
-                    Campo es inferior al número de caracteres
-                </mat-label>
-            </div>
-
-            <mat-form-field appearance="outline">
-                <mat-label>Numero de la Placa</mat-label>
-                <input matInput type="text" placeholder="123" formControlName="placanum">
-                <mat-icon matSuffix>style</mat-icon>
-            </mat-form-field>
-            <div *ngIf="form.get('placanum').errors && form.get('placanum').touched">
-                <mat-label *ngIf="form.get('placanum').hasError('required')">
-                    Es un campo requerido
-                </mat-label>
-                <mat-label *ngIf="form.get('placanum').hasError('maxlength')">
-                    Campo supera el número de caracteres
-                </mat-label>
-                <mat-label *ngIf="form.get('placanum').hasError('minlength')">
-                    Campo es inferior al número de caracteres
-                </mat-label>
-            </div>
-
-
-            <mat-form-field appearance="outline">
-                <mat-label>Modelo</mat-label>
-                <input matInput type="number" placeholder="Ej:2008" formControlName="modelo">
-                <mat-icon matSuffix>numbers</mat-icon>
-            </mat-form-field>
-
-
-            <div *ngIf="form.get('modelo').errors && form.get('modelo').touched">
-                <p *ngIf="form.get('modelo').hasError('required')">
-                    Es un campo requerido
-                </p>
-
-                <p *ngIf="form.get('modelo').hasError('min') || form.get('modelo').hasError('max')">
-                    Modelos entre 1970 y 2022
-                </p>
-            </div>
-
-
-            <mat-form-field appearance="outline">
-                <mat-label>marca</mat-label>
-                <mat-select [(value)]="selectedValue" formControlName="marca">
-                    <mat-option value="Seleccionar">Seleccionar</mat-option>
+            <mat-form-field appearance="fill">
+                <mat-label>Marca</mat-label>
+                <mat-select [(value)]="selectedValue2" formControlName="marca">
                     <mat-option value="Toyota">Toyota</mat-option>
                     <mat-option value="Chevrolet">Chevrolet</mat-option>
-                    <mat-option value="Reanult">Reanult</mat-option>
+                    <mat-option value="Renault">Renault</mat-option>
                     <mat-option value="Mazda">Mazda</mat-option>
-                    <mat-option value="Merdedes">Merdedes</mat-option>
                     <mat-option value="BMW">BMW</mat-option>
                     <mat-option value="Alfa Romeo">Alfa Romeo</mat-option>
                     <mat-option value="Audi">Audi</mat-option>
@@ -79,50 +71,51 @@
                     <mat-option value="Peugeot">Peugeot</mat-option>
                     <mat-option value="Porche">Porche</mat-option>
                 </mat-select>
-                <mat-icon matSuffix>garage</mat-icon>
             </mat-form-field>
-
             <div *ngIf="form.get('marca').errors && form.get('marca').touched">
-                <mat-label *ngIf="form.get('marca').hasError('required')">
+                <p *ngIf="form.get('marca').hasError('required')">
                     Es un campo requerido
-                </mat-label>
+                </p>
             </div>
 
+            <mat-form-field appearance="fill">
+                <mat-label>Modelo</mat-label>
+                <input matInput type="number" placeholder="Ej:2008" formControlName="modelo">
+            </mat-form-field>
+            <div *ngIf="form.get('modelo').errors && form.get('modelo').touched">
+                <p *ngIf="form.get('modelo').hasError('required')">
+                    Es un campo requerido
+                </p>
+                <p *ngIf="form.get('modelo').hasError('min') || form.get('modelo').hasError('max')">
+                    Modelos entre 1970 y 2022
+                </p>
+            </div>
 
-            <mat-form-field appearance="outline">
-                <mat-label>Tipo de vehiculo</mat-label>
-                <mat-select [(value)]="selectedValue2" formControlName="tipoVehiuclo">
-                    <mat-option value="Seleccionar">Seleccionar</mat-option>
+            <mat-form-field appearance="fill">
+                <mat-label>Tipo de vehículo</mat-label>
+                <mat-select [(value)]="selectedValue" formControlName="tipoVehiculo">
                     <mat-option value="Carro">Carro</mat-option>
                     <mat-option value="Camioneta">Camioneta</mat-option>
                     <mat-option value="Furgon">Furgon</mat-option>
                     <mat-option value="Campero">Campero</mat-option>
+                    <mat-option value="Carga">Carga</mat-option>
                 </mat-select>
-                <mat-icon matSuffix>garage</mat-icon>
             </mat-form-field>
 
-            <div *ngIf="form.get('tipoVehiuclo').errors && form.get('tipoVehiuclo').touched">
-                <mat-label *ngIf="form.get('tipoVehiuclo').hasError('required')">
+            <div *ngIf="form.get('tipoVehiculo').errors && form.get('tipoVehiculo').touched">
+                <p *ngIf="form.get('tipoVehiculo').hasError('required')">
                     Es un campo requerido
-                </mat-label>
+                </p>
             </div>
 
-            <mat-form-field appearance="outline">
-                <mat-label>Capacidad en Kg</mat-label>
-                <input matInput type="text" placeholder="Ej:150" formControlName="capacidad">
-                <mat-icon matSuffix>fitness_center</mat-icon>
+            <mat-form-field appearance="fill">
+                <mat-label>Capacidad</mat-label>
+                <input matInput type="text" placeholder="Ej:150Kg" formControlName="capacidad">
             </mat-form-field>
-
             <div *ngIf="form.get('capacidad').errors && form.get('capacidad').touched">
-                <mat-label *ngIf="form.get('capacidad').hasError('required')">
+                <p *ngIf="form.get('capacidad').hasError('required')">
                     Es un campo requerido
-                </mat-label>
-                <mat-label *ngIf="form.get('capacidad').hasError('maxlength')">
-                    Campo supera el número de caracteres
-                </mat-label>
-                <mat-label *ngIf="form.get('capacidad').hasError('minlength')">
-                    Campo es inferior al número de caracteres
-                </mat-label>
+                </p>
             </div>
 
             <mat-card-actions>
@@ -132,8 +125,6 @@
                 </button>
                 <button mat-button [routerLink]="['/vehiculo']"> Regresar </button>
             </mat-card-actions>
-
         </form>
-
     </mat-card>
 </div>

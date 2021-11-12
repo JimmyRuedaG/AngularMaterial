@@ -12,7 +12,7 @@
       <mat-icon *ngIf="drawer.opened">close</mat-icon>
     </button>
 
-    <h1 class="example-app-name">ENVIOS UDEC</h1>
+    <span>ENVIOS UDEC</span>
 
 
     <span class="example-spacer"></span>
@@ -23,21 +23,23 @@
 
     <mat-menu #menu="matMenu">
 
-      <ng-container *ngIf="this.login.isLogged()">
-        <button mat-menu-item routerLink="/buscar">
+
+
+      <ng-container *ngIf="this.login.isLogged() && this.login.rolType() == 'Administrador'">
+        <button mat-menu-item (click)="drawer.toggle()" routerLink="/buscar">
           <mat-icon>search</mat-icon>
           <span>Buscar</span>
         </button>
       </ng-container>
 
       <ng-container *ngIf="!this.login.isLogged()">
-        <button mat-menu-item routerLink="/registro">
+        <button mat-menu-item (click)="drawer.toggle()" routerLink="/registro">
           <mat-icon>account_circle</mat-icon>
           <span>Registro</span>
         </button>
       </ng-container>
 
-      <button mat-menu-item routerLink="/">
+      <button mat-menu-item (click)="drawer.toggle()" routerLink="/">
         <mat-icon>home</mat-icon>
         <span>Página principal</span>
       </button>
@@ -46,41 +48,51 @@
   </mat-toolbar>
 
   <mat-drawer-container class="example-sidenav-content" autosize>
+
     <mat-drawer #drawer class="example-sidenav" mode="side">
       <ng-container *ngIf="!this.login.isLogged()">
-
-        <button mat-menu-item style="cursor: pointer" (click)="drawer.toggle()" [routerLink]="['/login']">
+        <button mat-menu-item (click)="drawer.toggle()" routerLink="/login">
           <mat-icon>login</mat-icon>
           <span>Ingresar</span>
         </button>
-        <mat-divider></mat-divider>
       </ng-container>
 
       <ng-container *ngIf="this.login.isLogged()">
-
-        <button mat-menu-item (click)="logout()">
+        <button mat-menu-item (click)="drawer.toggle()" (click)="logout()">
           <mat-icon>logout</mat-icon>
           <span>Cerrar sesión</span>
         </button>
+      </ng-container>
 
-        <button mat-menu-item style="cursor: pointer" (click)="drawer.toggle()" [routerLink]="['/vehiculo']">
-          <mat-icon>commute</mat-icon>
-          <span>Vehiculo</span>
-        </button>
-        <mat-divider></mat-divider>
+      
 
-        <button mat-menu-item style="cursor: pointer" (click)="drawer.toggle()" [routerLink]="['/usuario']">
-          <mat-icon>accessibility_new</mat-icon>
-          <span>Vehiculo</span>
-        </button>
-        <mat-divider></mat-divider>
-
-        <button mat-menu-item style="cursor: pointer" (click)="drawer.toggle()" [routerLink]="['/departamento']">
+      <ng-container *ngIf="this.login.isLogged() && this.login.rolType() == 'Administrador'">
+        <button mat-menu-item (click)="drawer.toggle()" routerLink="/departamento">
           <mat-icon>share_location</mat-icon>
           <span>Departamento</span>
         </button>
         <mat-divider></mat-divider>
-      </ng-container>
+
+        <button mat-menu-item (click)="drawer.toggle()" routerLink="/vehiculo">
+          <mat-icon>garage</mat-icon>
+          <span>Vehículos</span>
+        </button>
+        <mat-divider></mat-divider> 
+
+       <button mat-menu-item (click)="drawer.toggle()" routerLink="/usuario">
+          <mat-icon>manage_accounts</mat-icon>
+          <span>Administrar usuarios</span>
+        </button>
+        <mat-divider></mat-divider> 
+        
+        
+
+        </ng-container>
+       
+        
+        
+
+        
     </mat-drawer>
 
     <br>

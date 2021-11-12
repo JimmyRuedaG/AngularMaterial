@@ -2,24 +2,10 @@
     display: block ruby;
     position: center;
     text-align: center;
-    margin-left: 10%;
 }
 .mat-button{
     position: center;
     text-align: center;
-}
-.mat-raised-button.mat-accent{
-    background-color: #1c609c;
-}
-.mat-raised-button:not([class*="mat-elevation-z"]) {
-    box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),0px 2px 2px 0px rgba(0, 0, 0, 0.14),0px 1px 5px 0px rgba(0, 0, 0, 0.12);
-    margin-right: -40%;
-    margin-left: 45%;
-}
-
-.mat-form-field-wrapper {
-    position: relative;
-    margin-right: 14%;
 }
 
 .example-card {

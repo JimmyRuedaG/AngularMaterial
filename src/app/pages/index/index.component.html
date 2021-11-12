@@ -1,4 +1,4 @@
-<div [hidden]="route.children.length !== 0">
+ <div [hidden]="route.children.length !== 0">
 
     <div class="center">
         <img src="assets/inicio.jpg" alt="angular" width="700">
@@ -10,7 +10,7 @@
 
         <div class="column">
 
-            <ng-container *ngIf="this.login.isLogged()">
+            <ng-container *ngIf="this.login.isLogged()&& this.login.rolType() == 'Administrador'">
 
                 <mat-card class="example-card">
 
@@ -40,11 +40,31 @@
 
             </ng-container>
 
+            <ng-container *ngIf="this.login.isLogged() && this.login.rolType() == 'Conductor'">
+                <mat-card class="example-card">
+                    <mat-card-header>
+                        <mat-card-title>CONDUCTOR</mat-card-title>
+                        <mat-card-subtitle>PUEBLITO </mat-card-subtitle>
+                    </mat-card-header>
+                    <div class="center frame">
+                        <img style="margin-top: 20px;" class="img2" src="assets/pueblito.jpg">
+                    </div>
+                    <mat-card-content>
+                        <p>
+                            esto es de conductor
+                        </p>
+                    </mat-card-content>
+                    <mat-card-actions class="center">
+                        <button mat-raised-button routerLink="/conductor">Acceder</button>
+                    </mat-card-actions>
+                </mat-card>
+            </ng-container>
         </div>
 
         <div class="column">
 
-            <ng-container *ngIf="!this.login.isLogged()">
+
+            <ng-container *ngIf="!this.login.isLogged() ">
 
                 <mat-card class="example-card">
 
@@ -79,7 +99,7 @@
 
         <div class="column">
 
-            <ng-container *ngIf="this.login.isLogged()">
+            <ng-container *ngIf="this.login.isLogged() && this.login.rolType() == 'Administrador'">
 
                 <mat-card class="example-card">
 
@@ -115,3 +135,4 @@
     </div>
 
 </div>
+

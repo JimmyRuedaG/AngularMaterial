@@ -16,9 +16,8 @@ import { MatOptionModule } from '@angular/material/core';
 import { MatSortModule } from '@angular/material/sort';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
-
-
-
+import { MatDialogModule } from '@angular/material/dialog';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [],
   imports: [
@@ -39,6 +38,9 @@ import { MatCardModule } from '@angular/material/card';
     MatSortModule,
     MatInputModule,
     MatCardModule,
+    MatDialogModule,
+    BrowserAnimationsModule,
+    // SliderModule
   ], exports: [
     MatButtonModule,
     MatFormFieldModule,
@@ -55,7 +57,11 @@ import { MatCardModule } from '@angular/material/card';
     MatSortModule,
     MatInputModule,
     MatCardModule,
-    MatDividerModule
+    MatDividerModule,
+    MatDialogModule,
+    CommonModule,
+    BrowserAnimationsModule,
+    // SliderModule
   ]
 })
 export class MaterialModuleModule { }
