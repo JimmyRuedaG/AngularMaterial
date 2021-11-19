@@ -18,7 +18,7 @@ import { ConfirmacionDialogComponent } from '../confirmacion-dialog/confirmacion
 export class UsuarioComponent implements OnInit {
 
   pageEvent: PageEvent;
-  displayedColumns: string[] = ['nombre', 'apellido', 'nick', 'documento', 'correo', 'rol', 'ciudad', 'ciudad2', 'acciones'];
+  displayedColumns: string[] = ['idUsuario', 'nombre', 'apellido', 'nick', 'documento', 'correo', 'rol', 'ciudad', 'ciudad2', 'acciones'];
   columnsToDisplay: string[] = this.displayedColumns.slice();
 
   dataSource: UserInfo;
@@ -56,7 +56,7 @@ export class UsuarioComponent implements OnInit {
       disableClose: false
     });
 
-    this.dialogRef.componentInstance.confirmMessage = '¿Eliminar el usuario?';
+    this.dialogRef.componentInstance.confirmMessage = 'El usuario seleccionado va a ser eliminado';
 
     this.dialogRef.afterClosed().subscribe(result => {
       if (result) {

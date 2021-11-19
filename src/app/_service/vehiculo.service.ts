@@ -66,4 +66,12 @@ export class VehiculoService {
   public getVehById(id: number): any{
     return this.http.get(`${this.url}/listar/` + id);
   }
+
+  public asociarUser(idUsuario: number, idVehiculo: number): any{
+    return this.http.post(`${this.url}/asociarcondcutor/${idUsuario}/${idVehiculo}`, null);
+  }
+
+  public desasociarUser(idUsuario: number, idVehiculo: number): any{
+    return this.http.post(`${this.url}/desasociarconductor/${idUsuario}/${idVehiculo}`, null);
+  }
 }

@@ -1,10 +1,10 @@
-import { HostListener, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable, Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { LoginService } from '../_service/login.service';
-import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root'
@@ -16,9 +16,6 @@ export class GuardianService implements CanActivate{
   userInactive: Subject<any> = new Subject();
 
   stopFlag: any;
-
-  horizontalPosition: MatSnackBarHorizontalPosition = 'start';
-  verticalPosition: MatSnackBarVerticalPosition = 'top';
 
   constructor(private login: LoginService, private route: Router, private _snackBar: MatSnackBar) {}
 
@@ -49,14 +46,20 @@ export class GuardianService implements CanActivate{
           return true;
         } else if (url.includes('departamento') && rol === 'Administrador'){
           return true;
+        } else if (url.includes('conductor') && rol === 'Conductor'){
+          return true;
+        } else if (url.includes('pais') && rol === 'Conductor'){
+          return true;
         } else {
-          this.route.navigate(['/unauthorized']);
+          this.route.navigate(['/unauthoinrized']);
           return false;
         }
+
       }else{
         sessionStorage.clear();
         return false;
       }
+
     } else {
       this.route.navigate(['/unauthorized']);
       return false;
@@ -73,7 +76,7 @@ export class GuardianService implements CanActivate{
 
   setTimeout(): void {
     if (this.login.isLogged()){
-      this.userActivity = setTimeout(() => this.userInactive.next(undefined), 10000);
+      this.userActivity = setTimeout(() => this.userInactive.next(undefined), 90000000);
     }
   }
 }

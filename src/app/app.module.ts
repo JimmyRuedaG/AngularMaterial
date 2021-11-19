@@ -27,6 +27,10 @@ import { UsuarioComponent } from './pages/usuario/usuario.component';
 import { ConductorComponent } from './pages/conductor/conductor.component';
 import { EditarUsuarioComponent } from './pages/usuario/editar-usuario/editar-usuario.component';
 import { RegistrarusuarioComponent } from './pages/usuario/registrarusuario/registrarusuario.component';
+import { AsociarComponent } from './pages/vehiculo/asociar/asociar.component';
+import { ConductoresAsociadosComponent } from './pages/vehiculo/conductores-asociados/conductores-asociados.component';
+import { ConductoresNoAsociadosComponent } from './pages/vehiculo/conductores-no-asociados/conductores-no-asociados.component';
+import { DesasociarComponent } from './pages/vehiculo/desasociar/desasociar.component';
 
 
 export function tokenGetter(): any {
@@ -53,6 +57,10 @@ export function tokenGetter(): any {
     ConductorComponent,
     EditarUsuarioComponent,
     RegistrarusuarioComponent,
+    AsociarComponent,
+    ConductoresAsociadosComponent,
+    ConductoresNoAsociadosComponent,
+    DesasociarComponent,
   ],
   imports: [
     BrowserModule,

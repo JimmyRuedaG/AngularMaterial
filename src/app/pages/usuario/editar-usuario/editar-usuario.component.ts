@@ -51,7 +51,7 @@ export class EditarUsuarioComponent implements OnInit {
   private loadUserInfo(idUsuario: number): void{
     this.user.getUserById(idUsuario).subscribe(data => {
       this.userInfo = data;
-
+      this.loadCities(this.userInfo.ciudad.departamento.idDepartamento);
       console.log(this.userInfo);
     });
   }
@@ -60,13 +60,7 @@ export class EditarUsuarioComponent implements OnInit {
     event.preventDefault();
 
     const user: Usuario = new Usuario();
-
-    if (this.form.value.clave === ''){
-      user.clave = this.userInfo.clave;
-    }else{
-      user.clave = this.form.value.clave;
-    }
-
+    
     user.idUsuario = this.userInfo.idUsuario;
     user.documento = this.userInfo.documento;
     user.nombre = this.form.value.nombre;
@@ -76,6 +70,7 @@ export class EditarUsuarioComponent implements OnInit {
     user.celular = this.form.value.celular;
     user.celularAux = this.form.value.celularAux;
     user.correo = this.form.value.correo;
+    user.clave = this.form.value.clave;
     user.tipoDocumento = {
       idTipoDocumento: 1
     };
@@ -83,7 +78,7 @@ export class EditarUsuarioComponent implements OnInit {
       idRol: 4
     };
     user.ciudad = {
-      idCiudad: Number(this.citySelected)
+      idCiudad: Number(this.form.value.ciudad)
     };
 
     if (this.form.valid){
@@ -104,6 +99,7 @@ export class EditarUsuarioComponent implements OnInit {
         nombre: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
         apellido: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(22)]],
         nick: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(22)]],
+        clave: ['',],
         direccion: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(30)]],
         celular: ['', [Validators.required, Validators.minLength(7), Validators.maxLength(10)]],
         celularAux: ['', [Validators.minLength(7), Validators.maxLength(10)]],

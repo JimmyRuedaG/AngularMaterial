@@ -17,15 +17,16 @@ table{
 }
 
 .mat-card{
-    border-radius: 25px;
-    margin-top: 5px;
-    margin-left: 500px;
-}
-.mat-card-actions .mat-button:first-child, .mat-card-actions .mat-raised-button:first-child, .mat-card-actions .mat-stroked-button:first-child {
-    margin-left: 110px;
-    margin-right: 50px;
+    border-radius: 70px;
+    margin-top: 20px;
+    margin-left: 100px;
 }
 
+
+.mat-card-actions .mat-button, .mat-card-actions .mat-raised-button, .mat-card-actions .mat-stroked-button {
+  
+   margin-left: 20%;
+}
 .mat-card:not([class*="mat-elevation-z"]) {
     box-shadow: 26px 16px 10px -1px rgba(0, 0, 0, 0.2),20px 10px 1px 1px rgba(0, 0, 0, 0.14),12px 5px 1px 1px rgba(0, 0, 0, 0.12);
 }
@@ -39,7 +40,7 @@ table{
     display: ruby-text;
     white-space: nowrap;
     text-decoration: none;
-    min-width: 226px;
+    min-width: 116px;
     line-height: 36px;
     padding: 0 16px;
     border-radius: 100px;

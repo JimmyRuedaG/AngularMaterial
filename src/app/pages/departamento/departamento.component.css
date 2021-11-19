@@ -1,16 +1,16 @@
 table{
-    width: 100%;
+  width: 100%;
 }
 .mat-button.mat-primary, .mat-icon-button.mat-primary, .mat-stroked-button.mat-primary {
-    color: #1fa276;
-    
+  color: #1fa276;
+  
 }
 
 
 .mat-form-field {
-  font-size: 30px;
+font-size: 30px;
 }
 
 td, th {
-  width: 50%;
+width: 50%;
 }

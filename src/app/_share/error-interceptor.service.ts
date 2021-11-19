@@ -1,7 +1,7 @@
 import { BarraDeProgresoService } from './../_service/barra-de-progreso.service';
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { EMPTY, Observable } from 'rxjs';
 import { catchError, retry, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
@@ -13,9 +13,7 @@ import { ErrorLogService, ResultJson } from 'src/app/_logueo/error-log.service';
 })
 export class ErrorInterceptorService implements HttpInterceptor {
 
-  horizontalPosition: MatSnackBarHorizontalPosition = 'start';
-  verticalPosition: MatSnackBarVerticalPosition = 'top';
-
+ 
   resultJson: ResultJson;
   ResultJsonString: any;
 
@@ -44,14 +42,14 @@ export class ErrorInterceptorService implements HttpInterceptor {
         if (str === 'No estas autorizado para acceder a este recurso')
         {
           this.openSnackBar(str);
-          this.router.navigate(['/unauthorized']);
+          this.router.navigate(['/login']);
         } else {
           this.openSnackBar('Nick o contraseña inválido');
         }
 
         if (error.error.error === 'invalid_token'){
           sessionStorage.clear();
-          this.router.navigate(['/unauthorized']);
+          this.router.navigate(['/login']);
           this.openSnackBar('Token inválido');
         }
       }else if (error.status === 404) {
@@ -77,8 +75,8 @@ export class ErrorInterceptorService implements HttpInterceptor {
   openSnackBar(error: string): void {
     this._snackBar.open(error, 'Cerrar', {
       duration: 10000,
-      horizontalPosition: this.horizontalPosition,
-      verticalPosition: this.verticalPosition,
+      horizontalPosition: "center",
+      verticalPosition: "top",
     });
   }
 

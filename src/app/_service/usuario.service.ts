@@ -4,6 +4,7 @@ import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http'
 import { environment } from '../../environments/environment';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+import { Vehiculo } from '../_model/vehiculo';
 
 export interface UserInfo{
   content: Usuario[];
@@ -55,6 +56,7 @@ export class UsuarioService {
 
     const rol = 4;
 
+
     return this.http.get<any>(`${this.url}/pageablePorRol/${rol}/${page}/${size}`).pipe(
       map((uInfo: UserInfo) => uInfo),
       catchError(err => throwError(err))
@@ -71,5 +73,13 @@ export class UsuarioService {
 
   public editUser(user: Usuario): any{
     return this.http.put(`${this.url}/editar`, user);
+  }
+
+  public getUserAsociado(idVehiculo: number): any{
+    return this.http.get<Usuario[]>(`${this.url}/listarConductorVehiculo/${idVehiculo}`);
+  }
+
+  public getUserNoAsociado(idVehiculo: number): any{
+    return this.http.get<Usuario[]>(`${this.url}/listarConductorNoVehiculo/${idVehiculo}`);
   }
 }

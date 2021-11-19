@@ -2,16 +2,29 @@
     <mat-progress-bar color="primary" mode="indeterminate"></mat-progress-bar>
 </div>
 
+<div class="row">
+    <div class="column">
 
+    </div>
+    <div class="column" [hidden]="route.children.length !== 0">
+        <h2 class="center">Ver lista de conductores</h2>
+    </div>
+
+</div>
 
 <div [hidden]="route.children.length !== 0">
     <div fxLayout fxLayoutAlign="center center">
         <mat-form-field fxFlex="40%">
-            <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Filter">
+            <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Filter" #input>
         </mat-form-field>
     </div>
 
     <table mat-table class="mat-elevation-z8" [dataSource]="userList" matSort>
+        <ng-container matColumnDef="idUsuario">
+            <th id="idUsuario" mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+            <td mat-cell *matCellDef="let element">{{element.idUsuario}}</td>
+        </ng-container>
+
         <ng-container matColumnDef="nombre">
             <th id="nombre" mat-header-cell *matHeaderCellDef mat-sort-header>Nombre</th>
             <td mat-cell *matCellDef="let element">{{element.nombre}}</td>
@@ -53,14 +66,14 @@
         </ng-container>
 
         <ng-container matColumnDef="acciones">
-            <th id="acciones" mat-header-cell *matHeaderCellDef mat-sort-header>Acciones</th>
+            <th id="acciones" mat-header-cell *matHeaderCellDef >Acciones: Editar  -   Eliminar</th>
             <td mat-cell *matCellDef="let element">
                 <div class="row">
                     <button mat-icon-button [routerLink]="['/usuario/editarusuario', element.idUsuario]">
-                        <mat-icon>edit</mat-icon>
+                        <mat-icon>drive_file_rename_outline</mat-icon>
                     </button>
                     <button mat-icon-button (click)="deleteUser(element.idUsuario)">
-                        <mat-icon>person_remove</mat-icon>
+                        <mat-icon>clear</mat-icon>
                     </button>
                 </div>
             </td>
@@ -68,22 +81,25 @@
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="4">No existen datos "{{ input.value }}"</td>
+        </tr>
+        
     </table>
 
-    <mat-paginator [length]="dataSource.totalElements"
-                    [pageSizeOptions]="[3, 5, 10, 25]"
-                    (page)="onPaginateChange($event)"
-                    showFirstLastButtons>
+    <mat-paginator [length]="dataSource.totalElements" [pageSizeOptions]="[3, 5, 10, 25]"
+        (page)="onPaginateChange($event)" showFirstLastButtons>
     </mat-paginator>
 </div>
 
 <div class="column" [hidden]="route.children.length !== 0">
     <div style="text-align: center;">
-        <button mat-icon-button routerLink="/usuario/registrarusuario"> 
+        <button mat-icon-button routerLink="/usuario/registrarusuario">
             <mat-icon>person_add</mat-icon>
             <span>Registrar usuario</span>
         </button>
     </div>
 </div>
 
-        <router-outlet></router-outlet>
+<router-outlet></router-outlet>

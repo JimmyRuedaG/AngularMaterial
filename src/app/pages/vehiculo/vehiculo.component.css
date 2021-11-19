@@ -1,4 +1,4 @@
-center{
+.center{
     display: flex;
     justify-content: center;
 }
@@ -17,8 +17,7 @@ table {
 
 .column {
     flex: 50%;
-    padding: 10px;
-    margin-left: 1270px;
+    padding: 20px;
 }
 
 .row {
@@ -58,15 +57,4 @@ button {
 
 .example-sidenav {
     padding: 20px;
-}
-.mat-button, .mat-icon-button, .mat-stroked-button {
-    color: cadetblue;
-    background: transparent;
-}
-
-.mat-h2, .mat-title, .mat-typography h2 {
-    font: 0 20px/32px Roboto, "Helvetica Neue", sans-serif;
-    letter-spacing: normal;
-    margin: 0px -845px -10px;
-        margin-right: -845px;
 }
